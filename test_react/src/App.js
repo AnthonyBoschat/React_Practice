@@ -39,12 +39,18 @@ class App extends React.Component
   {
     // On empêche le rechargement de la page
     event.preventDefault()
+    // On génère un nouvel id a partie de la date
     const id = new Date().getTime()
+    // On définie nom comme la valeur de l'input qui est passer par handleChange
     const nom = this.state.nouveau_client
 
+    // On définie le nouveau client avec ces informations
     const client = {id: id, nom: nom}
+    // On créé une copie de ma liste de clients
     const clients = this.state.clients.slice()
+    // On insert le nouveau client dans cette copie
     clients.push(client)
+    // On remplace la liste de clients du state par cette copie
     this.setState({clients: clients, nouveau_client: ""})
   }
 
@@ -53,7 +59,7 @@ class App extends React.Component
   {
     // On récupère la valeur de l'input
     const value = event.target.value
-    // On change la valeur du state du novueau_client
+    // On change la valeur du state du nouveau_client
     this.setState({nouveau_client: value})
   }
 
