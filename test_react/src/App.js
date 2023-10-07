@@ -20,7 +20,7 @@ class App extends React.Component
   handleClick = () =>
   {
     const clients = this.state.clients.slice()
-    clients.push({id: 4, nom: "Anne Dupont"})
+    clients.push({id: 4, nom: "Anne"})
     this.setState({clients: clients})
   }
 
