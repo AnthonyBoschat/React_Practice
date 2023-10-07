@@ -51,7 +51,7 @@ class App extends React.Component
       <div>
         <h1>{this.state.liste_name}</h1>
         <ul>
-          {this.state.clients.map(client => (<Client details={client} onDelete={this.handleDelete}/>))}
+          {this.state.clients.map(client => <Client client={client} onDelete={this.handleDelete}/>)}
         </ul>
         <Formulaire onClientAdd={this.handleAdd}/>
       </div>
