@@ -1,44 +1,41 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 
-class Formulaire extends Component
+function Formulaire(props)
 {
-    state = {
-        nouveau_client : ""
-    }
+    const [nouveau_client, setNouveauClient] = useState("")
+
+    
 
     // Quand l'input change
-    handleChange = (event) => 
+    function handleChange(event) 
     {
-        // On récupère la valeur de l'input
-        // On change la valeur du state du nouveau_client
-        this.setState({nouveau_client: event.target.value})
+        setNouveauClient(event.target.value)
     }
 
     // Soumission du formulaire pour ajouter un client
-    handleSubmit = (event) => 
+    function handleSubmit(event)
     {
         // On empêche le rechargement de la page
         event.preventDefault()
         // On génère un nouvel id a partie de la date
         const id = new Date().getTime()
         // On définie nom comme la valeur de l'input qui est passer par handleChange
-        const nom = this.state.nouveau_client
+        const nom = nouveau_client
 
-        this.props.onClientAdd({id, nom})
+        props.onClientAdd({id, nom})
 
-        this.setState({nouveau_client : ""})
+        setNouveauClient("")
     }
 
 
-    render()
-    {
-        return(
-            <form onSubmit={this.handleSubmit}>
-                <input value={this.state.nouveau_client} onChange={this.handleChange} type='text' placeholder='Ajouter un client'/>
-                <button>Ajouter</button>
-            </form>
-        )
-    }
+    
+    return(
+        <form onSubmit={handleSubmit}>
+            <input value={nouveau_client} onChange={handleChange} type='text' placeholder='Ajouter un client'/>
+            <button>Ajouter</button>
+        </form>
+    )
+    
 }
 
 export default Formulaire;
