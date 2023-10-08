@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import './App.css';
 import Client from "./Client";
 import Formulaire from "./Formulaire";
-import Counter from "./Counter";
 
 const App = () =>
 {
