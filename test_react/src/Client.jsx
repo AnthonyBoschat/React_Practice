@@ -16,7 +16,7 @@ function Client({client, onDelete})
 export default Client;
 
 
-
+//
 
 /*Avec une classe :
 class Client extends Component
