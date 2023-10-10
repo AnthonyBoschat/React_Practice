@@ -7,8 +7,7 @@ function Formulaire(props)
     
 
     // Quand l'input change
-    function handleChange(event) 
-    {
+    function handleChange(event){
         setNouveauClient(event.target.value)
     }
 
