@@ -5,6 +5,7 @@ import Formulaire from "./Formulaire";
 const App = () =>
 {
   const liste_name = "Liste des clients"
+
   const [clients, setClients] = useState([
     {id: 1, nom: "Anthony Boschat"},
     {id: 2, nom: "Maurane Lorjou"},
@@ -13,8 +14,7 @@ const App = () =>
 
   // Comportement
   // Pour supprimer un client
-  const handleDelete = (id) =>
-  {
+  const handleDelete = (id) =>{
     // On créé une copie du tableau du state
     const copyClients = [...clients]
     // Trouve la place du client dans le tableau grâce à son ID

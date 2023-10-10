@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 
 // Quand il n'y a pas de state, pas forcément besoin de déclarer une classe, on peut faire ceci :

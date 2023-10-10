@@ -31,7 +31,7 @@ function Formulaire(props)
     return(
         <form onSubmit={handleSubmit}>
             <input value={nouveau_client} onChange={handleChange} type='text' placeholder='Ajouter un client'/>
-            <button>Ajouter</button>
+            <button type="submit">Ajouter</button>
         </form>
     )
     
