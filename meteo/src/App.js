@@ -1,12 +1,11 @@
 import "./style.css";
-import Search from "./Search";
-import API from "./API";
+import Formulaire from "./Formulaire"
 
 function App() {
   return(
     <main>
-      <Search />
-      <API />
+      <div><Formulaire /></div>
+      <div></div>
     </main>
   )
 }
