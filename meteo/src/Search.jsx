@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function Search(){
 
+    // https://www.youtube.com/watch?v=_Hhg7NmmN-c
     // On défini les valeurs nécessaire pour l'api, le lien de l'API et notre clef
     const api = {
         key: "5801a4ae3169257bd132af0d75bbb9f4",
