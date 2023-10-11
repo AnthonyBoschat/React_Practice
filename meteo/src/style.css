@@ -1,0 +1,44 @@
+*{margin: 0; padding: 0;}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    outline: 1px solid black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+main > div{
+    outline: 1px solid black;
+}
+
+input[type="search"]{
+    font-size: 2em;
+    background-color: rgba(169, 169, 246, 0.617);
+}
+
+input[type="submit"]{
+    font-size: 2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    background-color: rgb(169, 169, 246);
+}
+
+#box_API{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5em;
+    background-color: rgba(169, 169, 246, 0.617);
+    font-size: 25px;
+}
+
