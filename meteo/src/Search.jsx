@@ -5,7 +5,7 @@ function Search(){
     // On défini les valeurs nécessaire pour l'api, le lien de l'API et notre clef
     const api = {
         key: "5801a4ae3169257bd132af0d75bbb9f4",
-        base: "http://api.openweathermap.org/data/2.5/"
+        base: "http://api.openweathermap.org/data/2.5/weather?"
     }
 
     const [city, setCity] = useState("")
@@ -18,7 +18,7 @@ function Search(){
         // On empêche le rechargement de page
         event.preventDefault()
         // On effectue une requête à l'api, en donnant en get les donnée, ville, metric, et la clef api
-        fetch(`${api.base}weather?q=${city}&units=metric&appid=${api.key}`)
+        fetch(`${api.base}q=${city}&units=metric&appid=${api.key}`)
         // On récupère la réponse en format json
         .then(response => response.json())
         // Quand on l'a
