@@ -4,14 +4,18 @@ import "./formulaire.css";
 
 function Formulaire(){
 
+    // Initilisation
+    // Initilisation de l'api et la clef de l'api
+    const API = {link:'https://api.openweathermap.org/data/2.5/weather?', key:'7b80af2de8d0c24eeabc0a0740d9e535'}
     // Initialisation de la value champ de recherche
     const [ville, setVille] = useState("")
+    // Initialisation de l'état des checkbox
     const [checksList, setCheckList] = useState([
-        {id:1, attribut:"temperature", name: "Température" , check:false},
-        {id:2, attribut:"humiditer", name: "Humidité", check:false},
-        {id:3, attribut:"vent", name: "Vent", check:false},
-        {id:4, attribut:"pression", name: "Pression atmosphérique", check:false},
-        {id:5, attribut:"nuage", name: "Nuage", check:false},
+        {id:1, attribut:"temp", name: "Température" , check:false},
+        {id:2, attribut:"humidity", name: "Humidité", check:false},
+        {id:3, attribut:"wind", name: "Vent", check:false},
+        {id:4, attribut:"pressure", name: "Pression atmosphérique", check:false},
+        {id:5, attribut:"weather", name: "Nuage", check:false},
     ])
 
     // Fonction qui génère tout les checkboxs
@@ -30,10 +34,51 @@ function Formulaire(){
     }
 
     // Soumission du formulaire
-    function handleSubmit(event){
-        event.preventDefault()
-        console.log(ville)
-        setVille("")
+    async function handleSubmit(event){
+        try{
+
+            // On annule le rechargement de la page
+            event.preventDefault()
+            // On filtre dans la checksList pour récupérer uniquement les check qui sont en true
+            const checkboxCheck = checksList.filter((element) => element.check === true) 
+            // On récupère les attributs de checkbox coché
+            const attributes = checkboxCheck.map((element) => element.attribut)
+            // On envoie une requête à l'API
+            const response = await fetch(`${API.link}appid=${API.key}&units=metric&q=${ville}`)
+            // Si la réponse n'est pas bonne, on provoque une nouvelle erreur attraper dans le catch
+            if(!response.ok){
+                throw new Error("API response was not ok")
+            }
+
+            const result = await response.json()
+
+            // On initialise un object vide
+            let object = {}
+            // On rempli l'objet vide avec la réponse JSON de l'API
+            attributes.forEach(element => 
+                {
+                    if(result[element] !== undefined){
+                        if(element === "wind"){
+                            object[element] = result[element].speed
+                        }
+                        else if(element === "weather")
+                        {
+                            object[element] = result[element][0].main
+                        }
+                    }
+                    else{
+                        object[element] = result.main[element]
+                    }
+                })
+            console.log(object) 
+            // On reset le champ de recherche
+            setVille("")
+            
+        
+        }catch(error){
+            console.error("Fetch Error", error)
+        }
+        
     }
 
     // Clique sur une checkbox -> changement de leurs état

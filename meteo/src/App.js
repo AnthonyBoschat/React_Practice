@@ -1,12 +1,18 @@
 import "./style.css";
 import Formulaire from "./Formulaire"
+import contexteAPI from "./Contexte"
+import API from "./API"
 
 function App() {
+
+  const {object, setObject} = useState(null)
   return(
-    <main>
-      <div><Formulaire /></div>
-      <div></div>
-    </main>
+    <contexteAPI.Provider value={{object, setObject}}>
+      <main>
+        <div><Formulaire /></div>
+        <div><API /></div>
+      </main>
+    </contexteAPI.Provider>
   )
 }
 
