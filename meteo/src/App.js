@@ -1,18 +1,38 @@
 import "./style.css";
 import Formulaire from "./Formulaire"
-import contexteAPI from "./Contexte"
 import API from "./API"
+import APIContexte from "./contextAPI"
+import checkboxContext from "./checkboxContext";
+import { useState } from "react";
+
 
 function App() {
 
-  const {object, setObject} = useState(null)
+  const [value, updateValue] = useState(null)
+
+  const contextValue = {
+    APIobject: value,
+    updateAPIobject: updateValue
+  }
+
+  const [checkboxs, updateCheckboxs] = useState(null)
+
+  const contextCheckboxs = {
+    checkboxs: checkboxs,
+    updateCheckboxs: updateCheckboxs
+  }
+
+
   return(
-    <contexteAPI.Provider value={{object, setObject}}>
-      <main>
-        <div><Formulaire /></div>
-        <div><API /></div>
-      </main>
-    </contexteAPI.Provider>
+
+    <checkboxContext.Provider value={contextCheckboxs}>
+      <APIContexte.Provider value={contextValue}>
+        <main>
+          <div><Formulaire /></div>
+          <div><API /></div>
+        </main>
+      </APIContexte.Provider> 
+    </checkboxContext.Provider>   
   )
 }
 

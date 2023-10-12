@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./formulaire.css";
+import APIContexte from "./contextAPI"
+import checkboxContext from "./checkboxContext";
 
 
 function Formulaire(){
+    // On hook le contexte API
+    const {APIobject, updateAPIobject} = useContext(APIContexte)
+    // On hook le contexte checkboxs
+    const {checkboxs, updateCheckboxs} = useContext(checkboxContext)
 
     // Initilisation
     // Initilisation de l'api et la clef de l'api
@@ -49,9 +55,8 @@ function Formulaire(){
             if(!response.ok){
                 throw new Error("API response was not ok")
             }
-
+            
             const result = await response.json()
-
             // On initialise un object vide
             let object = {}
             // On rempli l'objet vide avec la réponse JSON de l'API
@@ -63,19 +68,19 @@ function Formulaire(){
                         }
                         else if(element === "weather")
                         {
-                            object[element] = result[element][0].main
+                            object[element] = result[element][0].icon
                         }
                     }
                     else{
                         object[element] = result.main[element]
                     }
                 })
-            console.log(object) 
-            // On reset le champ de recherche
-            setVille("")
-            
-        
-        }catch(error){
+            // On stock la valeur de l'objet dans le contexte
+            updateAPIobject(object)
+            // On stock les checksbox dans un contexte
+            updateCheckboxs(checksList)
+        }
+        catch(error){
             console.error("Fetch Error", error)
         }
         
