@@ -11,9 +11,11 @@ main{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    gap: 2em;
 }
 
-section{
+button{
+    border: none;
     width: fit-content;
     height: fit-content;
     font-size: 3em;
@@ -24,9 +26,10 @@ section{
     border-radius: 1em;
     box-shadow: 5px 5px 5px black,
                 0px 0px 2px black;
+    background: linear-gradient(90deg, rgba(235, 120, 120, 0.483) 0%, rgba(228, 182, 133, 0.435) 100%);
 }
 
-section:hover{
+button:hover{
     cursor: pointer;
     box-shadow: 5px 5px 10px 2px black,
                 0px 0px 2px black;
