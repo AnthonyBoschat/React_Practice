@@ -105,7 +105,7 @@ function Formulaire(){
             <div className="searchInput">
                 <label htmlFor="ville">Ville</label>
                 <div>
-                    <input onChange={handleChangeCity} value={ville} id="ville" type="search"/>
+                    <input required onChange={handleChangeCity} value={ville} id="ville" type="search"/>
                     <input type="submit"/>
                 </div>
             </div>
