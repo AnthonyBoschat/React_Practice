@@ -23,21 +23,26 @@ function Button({element}) {
             console.log(response)
             const image = response.results[0].image
             console.log(image)
-            const destination = document.getElementById("destination")
-            let new_image = document.createElement("img")
-            new_image.src = image
-            destination.appendChild(new_image) 
+            changeDisplay()
         })
-
-
-
         //const keyAPI = "f26bb86aabe743069b136fed5a400204"
         //fetch("https://api.spoonacular.com/recipes/complexSearch")
     }
 
-    return(
-        <button onClick={handleClick} id={element.id}>{element.name}</button>
-    );
+    // Fonction pour changer l'affichage
+    function changeDisplay()
+    {
+        
+    }
+
+    
+    if(element.hidden === true){
+        return
+    }else{
+        return(<button onClick={handleClick} id={element.id}>{element.name}</button>)
+    }
+    
+
 
 }
 

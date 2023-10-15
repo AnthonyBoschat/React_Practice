@@ -5,13 +5,17 @@ body{
 }
 
 main{
+    display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
-    display: flex;
+}
+
+#buttonStorage{
+    height: 70vh;
+    display: none; /**/
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: center;
-    gap: 2em;
 }
 
 button{
