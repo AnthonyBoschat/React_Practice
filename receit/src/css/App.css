@@ -10,31 +10,3 @@ main{
     width: 100vw;
     height: 100vh;
 }
-
-#buttonStorage{
-    height: 70vh;
-    display: flex; /*flex*/
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-button{
-    border: none;
-    width: fit-content;
-    height: fit-content;
-    font-size: 3em;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-radius: 1em;
-    box-shadow: 5px 5px 5px black,
-                0px 0px 2px black;
-    background: linear-gradient(90deg, rgba(235, 120, 120, 0.483) 0%, rgba(228, 182, 133, 0.435) 100%);
-}
-
-button:hover{
-    cursor: pointer;
-    box-shadow: 5px 5px 10px 2px black,
-                0px 0px 2px black;
-}
