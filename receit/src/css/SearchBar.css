@@ -1,6 +1,6 @@
 #searchBar{
     height: 30vh;
-    display: none; /**/
+    display: flex; /*flex*/
     justify-content: center;
     align-items: center;
 }

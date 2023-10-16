@@ -10,9 +10,9 @@ import ReceitStorage from "./ReceitStorage";
 function App() {
 
   const [listOfElement, updateListOfElement] = useState([
-    {id: 1, name: "Cookie", engname: "Cookie", hidden: false},
-    {id: 2, name: "Tarte aux pommes", engname: "Apple pie", hidden: false},
-    {id: 3, name: "Yaourt", engname: "Yogurt", hidden: false},
+    {id: 1, name: "Cookie", hidden: false},
+    {id: 2, name: "Apple pie", hidden: false},
+    {id: 3, name: "Yogurt", hidden: false},
   ])
 
   const valueElementContext = {
@@ -20,15 +20,19 @@ function App() {
     updateListOfElement
   }
 
+
+
   return (
     <ElementContext.Provider value={valueElementContext}>
       <main>
         <ReceitStorage />
         <div id="searchBar"><SearchBar /></div>
-        <div id="buttonStorage">{listOfElement.map((element) => <Button key={element.id} element={element}/> )}</div>
       </main>
     </ElementContext.Provider>  
   );
 }
 
 export default App;
+
+
+// <div id="buttonStorage">{listOfElement.map((element) => <Button key={element.id} element={element}/> )}</div> -> Après searchBar

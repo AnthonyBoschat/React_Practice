@@ -13,7 +13,7 @@ main{
 
 #buttonStorage{
     height: 70vh;
-    display: none; /**/
+    display: flex; /*flex*/
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
