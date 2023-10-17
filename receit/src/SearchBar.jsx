@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
-import "./css/SearchBar.css"
-import ElementContext from "./ElementContext";
+
 
 function SearchBar(){
     
 
     const [searchBarValue, updatesearchBarValue] = useState("")
     const [suggestions, updateSuggestions] = useState ([])
-    const {listOfElement, updateListOfElement} = useContext(ElementContext)
     const API_KEY = "f26bb86aabe743069b136fed5a400204"
 
     // Lorsque la valeur de l'input search change
@@ -25,6 +23,7 @@ function SearchBar(){
             let data = await response.json()
             if(data.length != 0){
                 updateSuggestions(data)
+                console.log(data)
             }else{
                 data = [{
                     index:0,
@@ -37,6 +36,12 @@ function SearchBar(){
             updateSuggestions([])
         }
     }
+
+    function generateResultDiv(suggestion){
+        return(
+            <div>{suggestion.title}</div>
+        )
+    }
     
     return(
         <div id="searchBar_englobe">
@@ -48,6 +53,9 @@ function SearchBar(){
                         {suggestions.map((suggestion, index) => (<button key={index}>{suggestion.title}</button>))}
                     </div>
                 )}
+            <div id="resultSearch">
+                {suggestions.map((suggestion) => generateResultDiv(suggestion))}
+            </div>
         </div>
     )
 }

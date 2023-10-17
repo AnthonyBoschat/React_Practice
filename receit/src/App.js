@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./css/App.css";
+import "./css/SearchBar.css";
 import SearchBar from "./SearchBar";
 import { injectAnimation } from "./global_tools";
 
