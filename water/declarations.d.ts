@@ -1,0 +1,1 @@
+declare module 'anthonyboschat_tools';
