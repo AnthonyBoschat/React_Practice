@@ -1,0 +1,7 @@
+*{margin: 0; padding: 0;}
+
+#main{
+    background: linear-gradient(90deg, rgba(120,186,235,1) 0%, rgba(140,226,189,1) 100%);
+    width: 100vw;
+    height: 100vh;
+}

@@ -1,0 +1,11 @@
+.logoBox{
+    display: flex;
+    height: 25vh;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.logoBox > i{
+    font-size: 5em;
+    color: rgb(67, 113, 149);
+}

@@ -1,0 +1,14 @@
+.validBox{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.validInput{
+    font-size: 30px;
+    width: 18rem;
+}
+
+.validInput:hover{
+    cursor: pointer;
+}
