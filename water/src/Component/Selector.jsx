@@ -6,7 +6,7 @@ function Selector(){
 
     
     // State
-    const {hourValue, setHourValue, minuteValue, setMinuteValue} = useContext(HourMinuteContext)
+    const {hourValue, setHourValue, minuteValue, setMinuteValue, secondeValue, setSecondeValue} = useContext(HourMinuteContext)
 
     // Comportement
     const handleChange = (event) => {
@@ -17,6 +17,9 @@ function Selector(){
             case "inputMinute":
                 setMinuteValue(event.target.value)
                 break
+            case "inputSeconde":
+                setSecondeValue(event.target.value)
+                break
         }
     }
 
@@ -26,6 +29,12 @@ function Selector(){
             if(minuteValue > 59){setMinuteValue(59)}
             if(minuteValue <= 59){
                 if(!Number.isInteger(minuteValue)){setMinuteValue(parseInt(minuteValue))}
+            }
+        }
+        if(secondeValue != ""){
+            if(secondeValue > 59){setSecondeValue(59)}
+            if(secondeValue <= 59){
+                if(!Number.isInteger(secondeValue)){setSecondeValue(parseInt(secondeValue))}
             }
         }
         if(hourValue != ""){
@@ -44,6 +53,10 @@ function Selector(){
             <div className="selector selectMinuteBox">
                 <label htmlFor="inputMinute">Minute</label>
                 <input onBlur={controleValue} onChange={handleChange} value={minuteValue} id="inputMinute" type="number" min="0" max="59" />
+            </div>
+            <div className="selector selectSecondeBox">
+                <label htmlFor="inputSeconde">Seconde</label>
+                <input onBlur={controleValue} onChange={handleChange} value={secondeValue} id="inputSeconde" type="number" min="0" max="59" />
             </div>
         </div>
     )

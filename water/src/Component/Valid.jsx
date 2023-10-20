@@ -1,11 +1,12 @@
 import { useState, useContext } from "react"
 import "../Style/Valid.css"
 import { HourMinuteContext } from "../Context/HourMinuteContext"
+import {Tools} from "anthonyboschat_tools"
 
 function Valid(){
 
     //State
-    const {hourValue, setHourValue, minuteValue, setMinuteValue} = useContext(HourMinuteContext)
+    const {hourValue, setHourValue, minuteValue, setMinuteValue, secondeValue, setSecondeValue} = useContext(HourMinuteContext)
     const [buttonValue, setButtonValue] = useState("Start")
 
     //Comportement
@@ -18,11 +19,31 @@ function Valid(){
         // On créé des copies du value est heures et minutes
         let hour = hourValue
         let minute = minuteValue
-        console.log(hour)
-        console.log(minute)
+        let seconde = secondeValue
         hour === "" ? hour = 0 : hour = hour
         minute === "" ? minute = 0 : minute = minute
-        const secondes = (hourValue * 60 * 60) + (minuteValue * 60)
+        const decompte = (hourValue * 60 * 60) + (minuteValue * 60) + seconde
+        // Lance la décrémentation du compte à rebourd ( a etudier, par chatGPT )
+        setInterval(() => {
+            setSecondeValue(secondeValue => {
+                if (secondeValue === 0) {
+                    setMinuteValue(minuteValue => {
+                        if (minuteValue === 0) {
+                            setHourValue(hourValue => hourValue - 1);
+                            return 59;  // Réinitialiser minuteValue à 59
+                        }
+                        return minuteValue - 1;
+                    });
+                    return 59;  // Réinitialiser secondeValue à 59
+                }
+                return secondeValue - 1;
+            });
+        }, 1000);
+        // Lance le son à la fin du compte à rebourd
+        setTimeout(() => {
+            const audio = new Audio("https://lasonotheque.org/UPLOAD/mp3/0001.mp3")
+            audio.play()
+        }, decompte*1000);
         
     }
 
