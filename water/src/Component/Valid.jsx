@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react"
+import { useState, useContext, useRef, useEffect } from "react"
 import "../Style/Valid.css"
 import { HourMinuteContext } from "../Context/HourMinuteContext"
 import {Tools} from "anthonyboschat_tools"
@@ -32,8 +32,6 @@ function Valid(){
         buttonValue === "Start" ? setButtonValue("Stop") : setButtonValue("Start")
 
         switch(buttonValue){
-
-
             case "Start":
                 // On modifie le buttonValue
                 // On determine le nombre de seconde avant la fin du décompte
@@ -41,13 +39,13 @@ function Valid(){
                 let hour = hourValue
                 let minute = minuteValue
                 let seconde = secondeValue
-                hour === "" ? hour = 0 : hour = hour
-                minute === "" ? minute = 0 : minute = minute
+                // hour === "" ? hour = 0 : hour = hour
+                // minute === "" ? minute = 0 : minute = minute
                 const decompte = (hourValue * 60 * 60) + (minuteValue * 60) + seconde
                 // On stock les value de base des heures et minute dans le state base
-                setBaseHourValue(hourValue)
-                setBaseMinuteValue(minuteValue)
-                setBaseSecondeValue(secondeValue)
+                setBaseHourValue(hour)
+                setBaseMinuteValue(minute)
+                setBaseSecondeValue(seconde)
                 // Lance la décrémentation du compte à rebourd
                 intervalRef.current = setInterval(() => {
                     setSecondeValue(secondeValue => {
@@ -64,12 +62,37 @@ function Valid(){
                         return secondeValue - 1;
                     });
                 }, 1000);
+
+                
                 // Lance le son à la fin du compte à rebourd
                 timeoutRef.current = setTimeout(() => {
                     audioRef.current = new Audio("https://lasonotheque.org/UPLOAD/mp3/0001.mp3")
+                    audioRef.current.loop = true
                     audioRef.current.play()
+
                     // On cancel l'interval
                     clearInterval(intervalRef.current)
+                    // On change le state du valid
+                    setButtonValue("Start")
+                    // On remet les inputs en clair
+                    document.querySelectorAll("input").forEach(input => {
+                        input.disabled === false ? input.disabled = true : input.disabled = false
+                        !input.classList.contains("disabled") ? input.classList.add("disabled") : input.classList.remove("disabled")
+                    })
+                    // On remet les valeurs d'origine du state des selecteurs
+                    setHourValue(hour)
+                    setMinuteValue(minute)
+                    setSecondeValue(seconde)
+                    // On lance quasi immédiatement après un windows.alert ( besoin d'un timeout sinon il se lance avant le son )
+                    setTimeout(() => {
+                        let messageAlert = null
+                        inputValue == "" ? messageAlert = "Fin du timer" : messageAlert = inputValue
+                        window.alert(messageAlert)
+                        // Execution du script seulement après windows.alert
+                        audioRef.current.pause()
+                        audioRef.current.currentTime = 0
+                    }, 100);
+                    
                 }, decompte*1000);
                 break
 
@@ -82,12 +105,6 @@ function Valid(){
                 setHourValue(baseHourValue)
                 setMinuteValue(baseMinuteValue)
                 setSecondeValue(baseSecondeValue)
-                // On coupe l'audio, si audio il y a
-                if(audioRef.current !== null){
-                    audioRef.current.pause()
-                    audioRef.current.currentTime = 0
-                }
-                
                 break
         }
     }
