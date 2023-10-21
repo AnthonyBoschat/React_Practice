@@ -1,0 +1,20 @@
+#inputTextBox{
+    display: flex;
+    margin-top: 2em;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.inputTextLabel{
+    font-size: 2em;
+    font-weight: 700;
+}
+
+input[type="text"]{
+    font-size: 30px;
+    width: 18rem;
+    background-color: rgba(255, 255, 255, 0.392);
+    border: none;
+    box-shadow: 0px 0px 1px 2px white;
+}

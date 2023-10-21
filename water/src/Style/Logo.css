@@ -7,5 +7,7 @@
 
 .logoBox > i{
     font-size: 5em;
-    color: rgb(67, 113, 149);
+    color: rgba(23, 44, 105, 0.877);
+    background-color: rgba(255, 255, 255, 0.696);
+    border-radius: 50%;
 }

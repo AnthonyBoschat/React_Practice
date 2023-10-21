@@ -63,15 +63,15 @@ function Selector(){
     // Render
     return(
         <div className="selectorBox">
-            <div className="selector selectHourBox">
+            <div className="selector">
                 <label htmlFor="inputHour">Heure</label>
                 <input onBlur={controleValue} onChange={handleChange} value={hourValue} id="inputHour" type="number" min="0" max="24" />
             </div>
-            <div className="selector selectMinuteBox">
+            <div className="selector">
                 <label htmlFor="inputMinute">Minute</label>
                 <input onBlur={controleValue} onChange={handleChange} value={minuteValue} id="inputMinute" type="number" min="0" max="59" />
             </div>
-            <div className="selector selectSecondeBox">
+            <div className="selector">
                 <label htmlFor="inputSeconde">Seconde</label>
                 <input onBlur={controleValue} onChange={handleChange} value={secondeValue} id="inputSeconde" type="number" min="0" max="59" />
             </div>

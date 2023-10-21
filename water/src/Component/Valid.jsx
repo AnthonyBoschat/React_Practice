@@ -2,10 +2,12 @@ import { useState, useContext, useRef } from "react"
 import "../Style/Valid.css"
 import { HourMinuteContext } from "../Context/HourMinuteContext"
 import {Tools} from "anthonyboschat_tools"
+import { InputContext } from "../Context/InputContext"
 
 function Valid(){
 
     //State
+    const {inputValue, setInputValue} = useContext(InputContext)
     const {hourValue, setHourValue, minuteValue, setMinuteValue, secondeValue, setSecondeValue} = useContext(HourMinuteContext)
     const [buttonValue, setButtonValue] = useState("Start")
 
@@ -20,8 +22,11 @@ function Valid(){
     //Comportement
     const handleClick = () => {
 
-        // On rend la selection de temps incliquable ou cliquable en fonction
-        document.querySelectorAll("input").forEach(input => {input.disabled === false ? input.disabled = true : input.disabled = false})
+        // On rend la selection de temps incliquable ou cliquable en fonction, et l'input text
+        document.querySelectorAll("input").forEach(input => {
+            input.disabled === false ? input.disabled = true : input.disabled = false
+            !input.classList.contains("disabled") ? input.classList.add("disabled") : input.classList.remove("disabled")
+        })
 
         // On modifie le buttonValue
         buttonValue === "Start" ? setButtonValue("Stop") : setButtonValue("Start")
@@ -43,9 +48,7 @@ function Valid(){
                 setBaseHourValue(hourValue)
                 setBaseMinuteValue(minuteValue)
                 setBaseSecondeValue(secondeValue)
-                // On lance la formalisation du decompte dans les inputs
-                console.log(minute)
-                // Lance la décrémentation du compte à rebourd ( a etudier, par chatGPT )
+                // Lance la décrémentation du compte à rebourd
                 intervalRef.current = setInterval(() => {
                     setSecondeValue(secondeValue => {
                         if (secondeValue === 0) {

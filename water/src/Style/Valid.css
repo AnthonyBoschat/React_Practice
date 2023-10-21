@@ -5,10 +5,15 @@
 }
 
 .validInput{
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
     font-size: 30px;
     width: 18rem;
+    background-color: rgba(23, 44, 105, 0.463);
+    border: none;
 }
 
 .validInput:hover{
     cursor: pointer;
+    box-shadow: 5px 5px 5px black;
 }
