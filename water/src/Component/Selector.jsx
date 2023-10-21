@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import "../Style/Selector.css"
 import { HourMinuteContext } from "../Context/HourMinuteContext";
+import { Tools } from "anthonyboschat_tools";
 
 function Selector(){
 
@@ -25,22 +26,38 @@ function Selector(){
 
     // Fonction pour gérer la cohérences des valeur des minutes et heures
     const controleValue = () => {
-        if(minuteValue != ""){
-            if(minuteValue > 59){setMinuteValue(59)}
-            if(minuteValue <= 59){
-                if(!Number.isInteger(minuteValue)){setMinuteValue(parseInt(minuteValue))}
+
+        
+        if(hourValue == ""){setHourValue(0)}
+        else{
+            if(hourValue >= 0){
+                if(!Number.isInteger(hourValue)){setHourValue(parseInt(hourValue))}
+                else{setHourValue(hourValue)}
             }
-        }
-        if(secondeValue != ""){
-            if(secondeValue > 59){setSecondeValue(59)}
-            if(secondeValue <= 59){
-                if(!Number.isInteger(secondeValue)){setSecondeValue(parseInt(secondeValue))}
-            }
-        }
-        if(hourValue != ""){
-            if(!Number.isInteger(hourValue)){setHourValue(parseInt(hourValue))}
+            else{
+                setHourValue(0)
+            } 
         }
         
+        
+        if(minuteValue == ""){setMinuteValue(0)}
+        else{
+            if(minuteValue > 59){setMinuteValue(59)}
+            else if(minuteValue <= 59 && minuteValue >= 0){
+                if(!Number.isInteger(minuteValue)){setMinuteValue(parseInt(minuteValue))}
+            }
+            else{setMinuteValue(0)}
+        }
+        
+
+        if(secondeValue == ""){setSecondeValue(0)}
+        else{
+            if(secondeValue > 59){setSecondeValue(59)}
+            else if(secondeValue <= 59 && secondeValue >=0){
+                if(!Number.isInteger(secondeValue)){setSecondeValue(parseInt(secondeValue))}
+            }
+            else{setSecondeValue(0)}  
+        }
     }
 
     // Render
