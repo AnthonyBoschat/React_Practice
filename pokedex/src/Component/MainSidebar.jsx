@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
+import { StateContext } from "../Context/StateContext"
 function MainSidebar(){
 
-    // State
+    // State et Context
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible} = useContext(StateContext)
     const [boutons, setBoutons] = useState([
         {id:1, name:"Première génération", generation:1},
         {id:2, name:"Deuxième génération", generation:2},
@@ -18,13 +20,19 @@ function MainSidebar(){
         .then(response => response.json())
         .then(pokemons => {
             console.log(pokemons)
+            // On setState poekmonsList
+            setLogoVisible(false)
+            setPokemonsList(pokemons)
         })
     }
+
+
     const handleClick = (bouton) => {
         return(
             <button key={bouton.id} onClick={apiRequestPokemonGeneration}>{bouton.name}</button>
         )
     }
+
     // Render
     return(
         <div id="sidebarBox">
