@@ -1,6 +1,10 @@
+import React from "react"
+import PokemonLogo from "../Image/pokemonLogo.png"
 function MainContent(){
     return(
-        <div></div>
+        <div id="mainContentBox">
+            <img src={PokemonLogo} />
+        </div>
     )
 }
 

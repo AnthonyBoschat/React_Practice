@@ -1,6 +1,6 @@
 *{margin: 0; padding: 0;}
 header{
-    height: 20%;
+    height: 15%;
     width: 100%;
     display: flex;
     outline: 1px solid black;
@@ -15,7 +15,7 @@ header{
         background: rgb(142, 213, 255);
 
         img{
-            width: 50%;
+            width: 40%;
             height: auto;
         }
     }
@@ -23,8 +23,8 @@ header{
     #headerSelectBox{
         display: flex;
         background: rgb(142, 213, 255);
-        width: 80vw;
-        height: 20vh;
+        width: 80%;
+        height: 100%;
         outline: 1px solid black;
     }
 }
