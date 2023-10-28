@@ -7,7 +7,9 @@ function Header(){
     // Render
     return(
         <header>
-            <div id="logoBox">Bonjour</div>
+            <div id="logoBox">
+                <img src="../Image/pikachu.png" alt="" />
+            </div>
             <HeaderSelect/>
         </header>
     )
