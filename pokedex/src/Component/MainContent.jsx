@@ -7,7 +7,8 @@ function MainContent(){
 
     // Methode
     const generatePokemonList = (element) => {
-        const type = element.apiTypes[0].name
+        const tableauDeType = element.apiTypes.map((type) => type.name)
+        const type = tableauDeType.join(" ")
         return(
             <div key={`keyCapsule_${element.name}`} className={`capsulePokemonProfil ${type}`}>
                 <img src={element.image} key={`keyImage_${element.name}`} loading="lazy"></img>
