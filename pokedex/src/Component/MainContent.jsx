@@ -20,7 +20,7 @@ function MainContent(){
     return(
         <div id="mainContentBox">
             {logoVisible && <div id="logoPokemonBox"><img src={PokemonLogo}></img></div>}
-            {pokemonsList.map((element) => generatePokemonList(element))}
+            {!logoVisible && <div id="pokemonsListBox">{pokemonsList.map((element) => generatePokemonList(element))}</div>}
         </div>
     )
 }

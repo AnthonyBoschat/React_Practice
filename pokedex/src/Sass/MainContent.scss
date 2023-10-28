@@ -1,9 +1,7 @@
 #mainContentBox{
-    display: flex;
-    justify-content: space-evenly;
-    gap: 2em;
     overflow-y: auto;
-    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
     width: 80%;
     height: 100%;
     background: rgba(142, 214, 255, 0.468);
@@ -21,8 +19,17 @@
         }
     }
 
-    .capsulePokemonProfil{
-        margin-top: 1em;
+    #pokemonsListBox{
+        padding-top: 2em;
+        padding-bottom: 2em;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 4em;
+        flex-wrap: wrap;
+        width: 90%;
+        height: fit-content;
+
+        .capsulePokemonProfil{
         padding: 0.7em;
         display: flex;
         justify-content: center;
@@ -34,11 +41,10 @@
         height: 10em;
         transition: 0.3s;
 
-
-
         &:hover{
             cursor: pointer;
             transform: scale(1.1);
+            box-shadow: 5px 5px 20px 3px black;
             img{
                 width: 90%;
             }
@@ -47,9 +53,12 @@
             width: 70%;
             transition: 0.3s;
         }
+        }
     }
+    
 }
 
-.Feu{
-    background-color: rgba(255, 98, 0, 0.564);
-}
+.Feu{background-color: rgba(255, 98, 0, 0.564);}
+.Plante{background-color: rgba(6, 249, 1, 0.449);}
+.Eau{background-color: rgba(0, 123, 255, 0.517);}
+.Normal{background-color: rgba(182, 182, 182, 0.923);}
