@@ -1,8 +1,8 @@
 import "./Css/main.css"
-import GeneratePokemon from "./Component/generatePokemon";
+import Header from "./Component/Header";
 function App() {
   return (
-    <GeneratePokemon />
+    <Header />
   );
 }
 

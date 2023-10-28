@@ -1,1 +1,1 @@
-*{margin:0;padding:0}img{width:200px;height:auto;background-color:blue}/*# sourceMappingURL=main.css.map */
+*{margin:0;padding:0}body{display:flex;flex-direction:column}header{height:15vh;width:100vw;display:flex;outline:1px solid #000}header #logoBox{display:flex;justify-content:center;align-items:center;width:20%;outline:1px solid #000}header #headerSelectBox{display:flex;background-color:blue}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,26 @@
+*{margin: 0; padding: 0;}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    height: 15vh;
+    width: 100vw;
+    display: flex;
+    outline: 1px solid black;
+
+    #logoBox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+        outline: 1px solid black;
+    }
+
+    #headerSelectBox{
+        display: flex;
+        background-color: blue;
+    }
+}
