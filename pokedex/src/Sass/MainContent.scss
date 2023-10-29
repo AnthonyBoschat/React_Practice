@@ -88,7 +88,7 @@ $TypesCouleurs : (
 
 @each $type1, $couleur1 in $TypesCouleurs{
     @each $type2, $couleur2 in $TypesCouleurs{
-        .#{$type1}#{$type2}, .#{$type2}#{$type1}{
+        .#{$type1}#{$type2}{
             background: linear-gradient(to bottom right, $couleur1 49%, $couleur2 51%);
         }
     }
