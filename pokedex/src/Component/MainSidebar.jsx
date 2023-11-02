@@ -19,7 +19,7 @@ function MainSidebar(){
         fetch(`https://pokebuildapi.fr/api/v1/pokemon/generation/${boutonClicked[0].generation}`)
         .then(response => response.json())
         .then(pokemons => {
-            console.log(pokemons)
+            pokemons.map((pokemon) => pokemon.visible = true)
             // On setState poekmonsList
             setLogoVisible(false)
             setPokemonsList(pokemons)

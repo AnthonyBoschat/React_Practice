@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
+import { StateContext } from "../Context/StateContext";
 
 function HeaderSelect(){
     // State
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible} = useContext(StateContext)
+    const [selectedPokemonsList, setSelectedPokemonsList] = useState([])
     const [boutonsSelectType, setBoutonsSelectType] = useState([
         {name:"Feu", selected:false},
         {name:"Plante", selected:false},
@@ -25,13 +28,41 @@ function HeaderSelect(){
 
     // Methode
     const selectType = (event) => {
-        console.log(event.target)
         event.target.classList.contains("boutonTypeSelected") ? event.target.classList.remove("boutonTypeSelected") : event.target.classList.add("boutonTypeSelected")
+        const copyBoutonsSelectType = [...boutonsSelectType]
+        const index = copyBoutonsSelectType.findIndex((element) => element.name === event.target.innerHTML)
+        copyBoutonsSelectType[index].selected === false ? copyBoutonsSelectType[index].selected = true : copyBoutonsSelectType[index].selected = false
+        setBoutonsSelectType(copyBoutonsSelectType)
     }
 
     const generateBouton = (type) => {
         return(<div onClick={selectType} className={`boutonType ${type.name}`} key={`boutonType_${type.name}`}>{type.name}</div>)
     }
+
+    useEffect(() => {
+        const copyPokemonsList = [...pokemonsList]
+        const typeSelected = boutonsSelectType.filter((element) => element.selected === true)
+        if(typeSelected.length != 0){
+            console.log("types qui ont été selected : ",typeSelected)
+            console.log("pokemon liste : ", copyPokemonsList)
+            copyPokemonsList.forEach((pokemon) => {
+                pokemon.visible = pokemon.apiTypes.some(typeOfPokemon => {
+                    return typeSelected.some(typeSelect => {
+                        return typeSelect.name === typeOfPokemon.name
+                    })
+                })
+            });
+            console.log(copyPokemonsList);
+            setPokemonsList(copyPokemonsList)
+        }
+        else{
+            copyPokemonsList.forEach((pokemon) => {
+                pokemon.visible = true
+            })
+            setPokemonsList(copyPokemonsList)
+        }
+    }, [boutonsSelectType])
+
     // Render
     return(
         <div id="headerSelectBox">

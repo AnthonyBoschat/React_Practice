@@ -7,13 +7,16 @@ function MainContent(){
 
     // Methode
     const generatePokemonList = (element) => {
-        const tableauDeType = element.apiTypes.map((type) => type.name)
-        const type = tableauDeType.join("")
-        return(
-            <div key={`keyCapsule_${element.name}`} className={`capsulePokemonProfil ${type}`}>
-                <img title={element.name} src={element.image} key={`keyImage_${element.name}`} loading="lazy"></img>
-            </div>
-        )
+        if(element.visible === true){
+           const tableauDeType = element.apiTypes.map((type) => type.name)
+            const type = tableauDeType.join("")
+            return(
+                <div key={`keyCapsule_${element.name}`} className={`capsulePokemonProfil ${type}`}>
+                    <img title={element.name} src={element.image} key={`keyImage_${element.name}`} loading="lazy"></img>
+                </div>
+            ) 
+        }
+        
     }
 
     // Render
