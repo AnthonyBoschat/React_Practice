@@ -41,18 +41,35 @@ function HeaderSelect(){
 
     useEffect(() => {
         const copyPokemonsList = [...pokemonsList]
-        const typeSelected = boutonsSelectType.filter((element) => element.selected === true)
-        if(typeSelected.length != 0){
+        const tableauTypeSelected = boutonsSelectType.filter((element) => element.selected === true)
+        let typeSelected = ""
+        tableauTypeSelected.forEach((type) => typeSelected+= type.name)
+        console.log("typejoin", typeSelected)
+        console.log(typeSelected)
+        if(tableauTypeSelected.length != 0){
             console.log("types qui ont été selected : ",typeSelected)
             console.log("pokemon liste : ", copyPokemonsList)
-            copyPokemonsList.forEach((pokemon) => {
-                pokemon.visible = pokemon.apiTypes.some(typeOfPokemon => {
-                    return typeSelected.some(typeSelect => {
-                        return typeSelect.name === typeOfPokemon.name
+            copyPokemonsList.forEach(pokemon => {
+
+                const tableauThisPokemonType = []
+
+                if(pokemon.apiTypes.length < tableauTypeSelected.length){pokemon.visible = false}
+                else{
+                    pokemon.apiTypes.forEach(thisPokemonType => {
+                        tableauThisPokemonType.push(thisPokemonType.name)
                     })
-                })
-            });
-            console.log(copyPokemonsList);
+
+                    if(tableauTypeSelected.length === 1){
+                        pokemon.visible = tableauThisPokemonType.some(type => {
+                            return typeSelected.includes(type)
+                        })
+                    }else{
+                        pokemon.visible = tableauThisPokemonType.every(type => {
+                            return typeSelected.includes(type)
+                        })
+                    } 
+                }
+            })
             setPokemonsList(copyPokemonsList)
         }
         else{
