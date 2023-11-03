@@ -3,7 +3,7 @@ import { StateContext } from "../Context/StateContext"
 function MainSidebar(){
 
     // State et Context
-    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible} = useContext(StateContext)
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage} = useContext(StateContext)
     const [boutons, setBoutons] = useState([
         {id:1, name:"Première génération", generation:1},
         {id:2, name:"Deuxième génération", generation:2},
@@ -19,10 +19,10 @@ function MainSidebar(){
         fetch(`https://pokebuildapi.fr/api/v1/pokemon/generation/${boutonClicked[0].generation}`)
         .then(response => response.json())
         .then(pokemons => {
-            pokemons.map((pokemon) => pokemon.visible = true)
+            // On filtre les pokemons reçu selon les types qui ont été selectionner et on setState la liste de pokemons
+            filtrage(pokemons)
             // On setState poekmonsList
             setLogoVisible(false)
-            setPokemonsList(pokemons)
         })
     }
 
