@@ -11,9 +11,10 @@ function MainContent(){
     const showProfilOfThisPokemon = (event) => {
         // On change le state profilPokemon pour indiquer que l'utilisateur veut voir le profil d'un pokemon
         // On setState toutes les informations du pokemons qui seront importante pour le profil, image, nom
-        const pokemonName = event.target.dataset.pokemonname
-        const pokemonImage = event.target.dataset.pokemonimage
-        const pokemonType = event.target.dataset.pokemontype
+        const {name, image, type} = event.currentTarget.dataset
+        const pokemonName = name
+        const pokemonImage = image
+        const pokemonType = type
         const copyProfilPokemon = {...profilPokemon}
 
         copyProfilPokemon.name = pokemonName
@@ -28,8 +29,8 @@ function MainContent(){
            const tableauDeType = pokemon.apiTypes.map((type) => type.name)
             const type = tableauDeType.join("")
             return(
-                <div data-pokemonimage={pokemon.image} data-pokemontype={type} data-pokemonname={pokemon.name} onClick={showProfilOfThisPokemon} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>
-                    <img data-pokemonimage={pokemon.image} data-pokemontype={type} data-pokemonname={pokemon.name} title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
+                <div data-image={pokemon.image} data-type={type} data-name={pokemon.name} onClick={showProfilOfThisPokemon} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>
+                    <img title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
                 </div>
             ) 
         }
