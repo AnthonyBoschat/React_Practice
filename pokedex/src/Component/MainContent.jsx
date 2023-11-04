@@ -1,18 +1,25 @@
 import React, { useContext, useEffect, useState } from "react"
 import PokemonLogo from "../Image/pokemonLogo.png"
 import { StateContext } from "../Context/StateContext"
+import ProfilPokemon from "./ProfilPokemon"
+
 function MainContent(){
     // State et Context
-    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible} = useContext(StateContext)
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, profilPokemonOn, setProfilPokemonOn} = useContext(StateContext)
 
     // Methode
-    const generatePokemonList = (element) => {
-        if(element.visible === true){
-           const tableauDeType = element.apiTypes.map((type) => type.name)
+    const handleClick = () => {
+        // On change le state profilPokemonOn pour indiquer que l'utilisateur veut voir le profil d'un pokemon
+        setProfilPokemonOn(true)
+    }
+
+    const generatePokemonList = (pokemon) => {
+        if(pokemon.visible === true){
+           const tableauDeType = pokemon.apiTypes.map((type) => type.name)
             const type = tableauDeType.join("")
             return(
-                <div key={`keyCapsule_${element.name}`} className={`capsulePokemonProfil ${type}`}>
-                    <img title={element.name} src={element.image} key={`keyImage_${element.name}`} loading="lazy"></img>
+                <div onClick={handleClick} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>
+                    <img title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
                 </div>
             ) 
         }
@@ -23,7 +30,8 @@ function MainContent(){
     return(
         <div id="mainContentBox">
             {logoVisible && <div id="logoPokemonBox"><img src={PokemonLogo}></img></div>}
-            {!logoVisible && <div id="pokemonsListBox">{pokemonsList.map((element) => generatePokemonList(element))}</div>}
+            {!logoVisible && <div id="pokemonsListBox">{pokemonsList.map((pokemon) => generatePokemonList(pokemon))}</div>}
+            <ProfilPokemon />
         </div>
     )
 }

@@ -1,0 +1,52 @@
+#profilPokemonOverlay{
+   background: rgba(128, 128, 128, 0.559);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #profilPokemonBox{
+        outline: 3px solid black;
+        width: 40vw;
+        height: 50vw;
+        display: flex;
+        flex-direction: column;
+
+        .childProfilPokemonBox{width: 100%; outline: 1px solid black;}
+        
+        #profilPokemonHeaderCloseBox{
+            background: rgba(142, 214, 255, 0.891);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 8%;
+
+            button{
+                padding-right: 1%;
+                font-size: 2em;
+                font-weight: 700;
+                background: none;
+                border: none;
+            }
+
+            button:hover{cursor: pointer;}
+        }
+
+        #profilPokemonImageBox{
+            background: rgba(85, 146, 181, 0.903);
+            height: 52%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #profilPokemonPrecisionBox{
+            background: rgba(142, 214, 255, 0.891);
+            height: 40%;
+        }
+    }
+}
