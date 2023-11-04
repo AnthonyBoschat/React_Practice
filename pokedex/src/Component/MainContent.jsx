@@ -5,12 +5,22 @@ import ProfilPokemon from "./ProfilPokemon"
 
 function MainContent(){
     // State et Context
-    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, profilPokemonOn, setProfilPokemonOn} = useContext(StateContext)
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, profilPokemon, setProfilPokemon} = useContext(StateContext)
 
     // Methode
-    const handleClick = () => {
-        // On change le state profilPokemonOn pour indiquer que l'utilisateur veut voir le profil d'un pokemon
-        setProfilPokemonOn(true)
+    const showProfilOfThisPokemon = (event) => {
+        // On change le state profilPokemon pour indiquer que l'utilisateur veut voir le profil d'un pokemon
+        // On setState toutes les informations du pokemons qui seront importante pour le profil, image, nom
+        const pokemonName = event.target.dataset.pokemonname
+        const pokemonImage = event.target.dataset.pokemonimage
+        const pokemonType = event.target.dataset.pokemontype
+        const copyProfilPokemon = {...profilPokemon}
+
+        copyProfilPokemon.name = pokemonName
+        copyProfilPokemon.img = pokemonImage
+        copyProfilPokemon.type = pokemonType
+        copyProfilPokemon.visible = true
+        setProfilPokemon(copyProfilPokemon)
     }
 
     const generatePokemonList = (pokemon) => {
@@ -18,8 +28,8 @@ function MainContent(){
            const tableauDeType = pokemon.apiTypes.map((type) => type.name)
             const type = tableauDeType.join("")
             return(
-                <div onClick={handleClick} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>
-                    <img title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
+                <div data-pokemonimage={pokemon.image} data-pokemontype={type} data-pokemonname={pokemon.name} onClick={showProfilOfThisPokemon} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>
+                    <img data-pokemonimage={pokemon.image} data-pokemontype={type} data-pokemonname={pokemon.name} title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
                 </div>
             ) 
         }

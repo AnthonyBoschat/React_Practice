@@ -6,7 +6,12 @@ export const StateContext = createContext();
 
 // On définie son provider et les state par défaut
 export const StateProvider = ({children}) => {
-    const [profilPokemonOn, setProfilPokemonOn] = useState(false)
+    const [profilPokemon, setProfilPokemon] = useState({
+        visible:false,
+        img:null,
+        name:null,
+        type:null,
+    })
     const [pokemonsList, setPokemonsList] = useState([])
     const [logoVisible, setLogoVisible] = useState(true)
     const [boutonsSelectType, setBoutonsSelectType] = useState([
@@ -83,7 +88,7 @@ export const StateProvider = ({children}) => {
 
 
     return(
-        <StateContext.Provider value={{pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, profilPokemonOn, setProfilPokemonOn}}>
+        <StateContext.Provider value={{pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, profilPokemon, setProfilPokemon}}>
             {children}
         </StateContext.Provider>
     )

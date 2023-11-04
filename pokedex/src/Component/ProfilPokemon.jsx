@@ -3,14 +3,16 @@ import { StateContext } from "../Context/StateContext";
 
 function ProfilPokemon(){
     
-    const {profilPokemonOn, setProfilPokemonOn} = useContext(StateContext)
+    const {profilPokemon, setProfilPokemon} = useContext(StateContext)
 
     const closeProfil = (event) => {
         if(event.target.id == "profilPokemonOverlay" || event.target.id =="closeProfilButton"){
-            setProfilPokemonOn(false)
+            const copyProfilPokemon = {...profilPokemon}
+            copyProfilPokemon.visible = false
+            setProfilPokemon(copyProfilPokemon)
         }
     }
-    if(!profilPokemonOn){
+    if(!profilPokemon.visible){
         return null
     }
 
@@ -20,8 +22,8 @@ function ProfilPokemon(){
                 <div id="profilPokemonHeaderCloseBox" className="childProfilPokemonBox">
                     <button id="closeProfilButton" onClick={closeProfil}>X</button>
                 </div>
-                <div id="profilPokemonImageBox" className="childProfilPokemonBox">
-
+                <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.type}` }>
+                    <img src={profilPokemon.img} title={profilPokemon.name} alt={profilPokemon.name} />
                 </div>
                 <div id="profilPokemonPrecisionBox" className="childProfilPokemonBox">
 

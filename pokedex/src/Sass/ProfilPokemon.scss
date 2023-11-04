@@ -10,6 +10,7 @@
     align-items: center;
 
     #profilPokemonBox{
+        background: rgba(142, 214, 255, 0.891);
         outline: 3px solid black;
         width: 40vw;
         height: 50vw;
@@ -19,7 +20,6 @@
         .childProfilPokemonBox{width: 100%; outline: 1px solid black;}
         
         #profilPokemonHeaderCloseBox{
-            background: rgba(142, 214, 255, 0.891);
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -37,15 +37,18 @@
         }
 
         #profilPokemonImageBox{
-            background: rgba(85, 146, 181, 0.903);
+            
             height: 52%;
             display: flex;
             justify-content: center;
             align-items: center;
+            img{
+                height: 100%;
+                width: auto;
+            }
         }
 
         #profilPokemonPrecisionBox{
-            background: rgba(142, 214, 255, 0.891);
             height: 40%;
         }
     }
