@@ -20,6 +20,7 @@ function ProfilPokemon(){
         <div id="profilPokemonOverlay" onClick={closeProfil}>
             <div id="profilPokemonBox">
                 <div id="profilPokemonHeaderCloseBox" className="childProfilPokemonBox">
+                    <span>{profilPokemon.name}</span>
                     <button id="closeProfilButton" onClick={closeProfil}>X</button>
                 </div>
                 <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.type}` }>

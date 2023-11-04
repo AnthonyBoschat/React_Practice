@@ -21,9 +21,17 @@
         
         #profilPokemonHeaderCloseBox{
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             height: 8%;
+            
+
+            span{
+                padding-left: 1%;
+                font-size: 2em;
+                font-weight: 600;
+                font-family: "Noto Sans", sans-serif;
+            }
 
             button{
                 padding-right: 1%;
