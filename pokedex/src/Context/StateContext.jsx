@@ -36,6 +36,7 @@ export const StateProvider = ({children}) => {
     ]);
     // fonction qui permet de filtrer les pokemons selon les types selectionner et de setState la nouvelle liste
     const filtrage = (pokemonsList) => {
+        console.log(pokemonsList)
         // On créé une copie de la liste de tout les pokemons
         const copyPokemonsList = [...pokemonsList]
         // On créé un tableau qui correspond à tout les types selectionner
@@ -59,7 +60,6 @@ export const StateProvider = ({children}) => {
                         // On rempli le tableau
                         tableauThisPokemonType.push(thisPokemonType.name)
                     })
-                    console.log(tableauThisPokemonType.join(""))
                     // S'il n'y a qu'un seul filtre
                     if(tableauTypeSelected.length === 1){
                         // pour ce pokemon,on verifie si au moin l'un de ces types est includes dans le string de filtre, si oui, renvoie true, sinon false
