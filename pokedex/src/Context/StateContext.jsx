@@ -81,11 +81,13 @@ export const StateProvider = ({children}) => {
         else{
             // Tout les pokemons sont rendu visible
             copyPokemonsList.forEach((pokemon) => {
+                // On prépare un tableau qui va contenir les types du pokemon en cours d'instance
                 const tableauThisPokemonType = []
                 pokemon.apiTypes.forEach(thisPokemonType => {
                     // On rempli le tableau
                     tableauThisPokemonType.push(thisPokemonType.name)
                 })
+                // On attribut à ce pokemon la clef typeJoin et on modifie sa clef visible
                 pokemon.typeJoin = tableauThisPokemonType.join("")
                 pokemon.visible = true
             })
