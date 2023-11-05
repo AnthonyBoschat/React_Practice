@@ -26,7 +26,7 @@ function MainContent(){
 
     const generatePokemonList = (pokemon) => {
         if(pokemon.visible === true){
-           const tableauDeType = pokemon.apiTypes.map((type) => type.name)
+            const tableauDeType = pokemon.apiTypes.map((type) => type.name)
             const type = tableauDeType.join("")
             return(
                 <div data-image={pokemon.image} data-type={type} data-name={pokemon.name} onClick={showProfilOfThisPokemon} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>

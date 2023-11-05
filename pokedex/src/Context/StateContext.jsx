@@ -59,6 +59,7 @@ export const StateProvider = ({children}) => {
                         // On rempli le tableau
                         tableauThisPokemonType.push(thisPokemonType.name)
                     })
+                    console.log(tableauThisPokemonType.join(""))
                     // S'il n'y a qu'un seul filtre
                     if(tableauTypeSelected.length === 1){
                         // pour ce pokemon,on verifie si au moin l'un de ces types est includes dans le string de filtre, si oui, renvoie true, sinon false
@@ -73,12 +74,19 @@ export const StateProvider = ({children}) => {
                         })
                     } 
                 }
+                pokemon.typeJoin = tableauThisPokemonType.join("")
             })
         }
         // Si le nombre de type selectionner n'est pas superieur à 0
         else{
             // Tout les pokemons sont rendu visible
             copyPokemonsList.forEach((pokemon) => {
+                const tableauThisPokemonType = []
+                pokemon.apiTypes.forEach(thisPokemonType => {
+                    // On rempli le tableau
+                    tableauThisPokemonType.push(thisPokemonType.name)
+                })
+                pokemon.typeJoin = tableauThisPokemonType.join("")
                 pokemon.visible = true
             })
         }

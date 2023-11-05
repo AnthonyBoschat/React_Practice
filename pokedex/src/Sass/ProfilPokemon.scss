@@ -49,10 +49,25 @@
             height: 52%;
             display: flex;
             justify-content: center;
-            align-items: center;
             img{
                 height: 100%;
                 width: auto;
+            }
+            div.controle{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+
+                i{
+                    font-size: 2.5em;
+                    transition: 0.1s;
+                }
+
+                i:hover{
+                    cursor: pointer;
+                    font-size: 3em;
+                }
             }
         }
 
