@@ -3,7 +3,7 @@ import { StateContext } from "../Context/StateContext"
 function MainSidebar(){
 
     // State et Context
-    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, boutons, setBoutons} = useContext(StateContext)
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, boutons, setBoutons, chargement, setChargement} = useContext(StateContext)
 
     // Methode
     const showPokemonOfGeneration = (event) => {
@@ -21,26 +21,21 @@ function MainSidebar(){
         setBoutons(copyBoutons)
         filtrage(pokemonsList)
     }
-
-    // Fonction qui récupère toute la liste des pokemons au chargement de la page
-    useEffect(() => {
-        fetch(`https://pokebuildapi.fr/api/v1/pokemon`)
-        .then(response => response.json())
-        .then(pokemons => {
-            pokemons.forEach(pokemon => {
-                pokemon.visible = false
-                pokemon.generationSelected = false
-            })
-            setPokemonsList(pokemons)
-        })
-    }, [])
     
     const generateBoutons = (bouton) => {
-        return(
-            <button key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
-        )
+        if(pokemonsList.length === 0){
+            return(
+                <button disabled key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
+            ) 
+        }else{
+            return(
+                <button key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
+            ) 
+        }
+        
     }
 
+    
     // Render
     return(
         <div id="sidebarBox">

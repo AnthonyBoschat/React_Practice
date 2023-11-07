@@ -14,6 +14,7 @@ export const StateProvider = ({children}) => {
     })
     const [pokemonsList, setPokemonsList] = useState([])
     const [logoVisible, setLogoVisible] = useState(true)
+    const [chargement, setChargement] = useState(true)
     const [boutons, setBoutons] = useState([
         {id:1, name:"Première génération", generation:1, selected:false},
         {id:2, name:"Deuxième génération", generation:2, selected:false},
@@ -158,7 +159,7 @@ export const StateProvider = ({children}) => {
 
 
     return(
-        <StateContext.Provider value={{pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, profilPokemon, setProfilPokemon, boutons, setBoutons}}>
+        <StateContext.Provider value={{pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, chargement, setChargement, filtrage, profilPokemon, setProfilPokemon, boutons, setBoutons}}>
             {children}
         </StateContext.Provider>
     )
