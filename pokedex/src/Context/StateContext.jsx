@@ -14,7 +14,6 @@ export const StateProvider = ({children}) => {
     })
     const [pokemonsList, setPokemonsList] = useState([])
     const [logoVisible, setLogoVisible] = useState(true)
-    const [chargement, setChargement] = useState(true)
     const [boutons, setBoutons] = useState([
         {id:1, name:"Première génération", generation:1, selected:false},
         {id:2, name:"Deuxième génération", generation:2, selected:false},
@@ -67,9 +66,9 @@ export const StateProvider = ({children}) => {
 
             // On change la clef generationSelected des pokemons qui sont des generations selectionner
             generationSelected.forEach(generation => {
-                copyPokemonsList.filter(pokemon => {
-                    if(pokemon.apiGeneration === generation.generation)return true
-                }).map(pokemon => {
+                copyPokemonsList.filter(pokemon =>
+                    (pokemon.apiGeneration === generation.generation)
+                ).map(pokemon => {
                     pokemon.generationSelected = true
                 })
             })
@@ -149,6 +148,7 @@ export const StateProvider = ({children}) => {
                     }
                 })
             }
+        console.log(copyPokemonsList)
         // On setState la liste de pokemon
         setPokemonsList(copyPokemonsList)
         }else{
@@ -159,7 +159,7 @@ export const StateProvider = ({children}) => {
 
 
     return(
-        <StateContext.Provider value={{pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, chargement, setChargement, filtrage, profilPokemon, setProfilPokemon, boutons, setBoutons}}>
+        <StateContext.Provider value={{pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, profilPokemon, setProfilPokemon, boutons, setBoutons}}>
             {children}
         </StateContext.Provider>
     )

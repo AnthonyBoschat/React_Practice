@@ -3,7 +3,7 @@ import { StateContext } from "../Context/StateContext"
 function MainSidebar(){
 
     // State et Context
-    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, boutons, setBoutons, chargement, setChargement} = useContext(StateContext)
+    const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, boutons, setBoutons} = useContext(StateContext)
 
     // Methode
     const showPokemonOfGeneration = (event) => {
@@ -32,9 +32,7 @@ function MainSidebar(){
                 <button key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
             ) 
         }
-        
     }
-
     
     // Render
     return(
