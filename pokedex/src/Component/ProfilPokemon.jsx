@@ -4,7 +4,7 @@ import { StateContext } from "../Context/StateContext";
 function ProfilPokemon(){
     
     // State
-    const {profilPokemon, setProfilPokemon, pokemonsList, setPokemonsList} = useContext(StateContext)
+    const {fetchAllEvolutionOfThisPokemon, profilPokemon, setProfilPokemon, pokemonsList, setPokemonsList} = useContext(StateContext)
 
 
 
@@ -58,7 +58,9 @@ function ProfilPokemon(){
         copyProfilPokemon.name = pokemonsListVisibleTrue[nextPokemonIndex].name
         copyProfilPokemon.img = pokemonsListVisibleTrue[nextPokemonIndex].image
         copyProfilPokemon.type = pokemonsListVisibleTrue[nextPokemonIndex].typeJoin
+        copyProfilPokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(copyProfilPokemon.name)
         setProfilPokemon(copyProfilPokemon)
+        console.log(copyProfilPokemon)
     }
 
 
