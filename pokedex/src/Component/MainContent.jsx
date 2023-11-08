@@ -34,7 +34,6 @@ function MainContent(){
                 </div>
             ) 
         }
-        
     }
 
     // Render

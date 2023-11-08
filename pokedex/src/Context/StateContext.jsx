@@ -42,7 +42,6 @@ export const StateProvider = ({children}) => {
     ]);
     // fonction qui permet de filtrer les pokemons selon les types selectionner et de setState la nouvelle liste
     const filtrage = (pokemonsList) => {
-
         // On créé une copie de la liste de tout les pokemons
         const copyPokemonsList = [...pokemonsList]
 
