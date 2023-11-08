@@ -19,6 +19,10 @@ export const StateProvider = ({children}) => {
         {id:2, name:"Deuxième génération", generation:2, selected:false},
         {id:3, name:"Troisième génération", generation:3, selected:false},
         {id:4, name:"Quatrième génération", generation:4, selected:false},
+        {id:5, name:"Cinquième génération", generation:5, selected:false},
+        {id:6, name:"Sixième génération", generation:6, selected:false},
+        {id:7, name:"Septième génération", generation:7, selected:false},
+        {id:8, name:"Huitième génération", generation:8, selected:false},
     ])
     const [boutonsSelectType, setBoutonsSelectType] = useState([
         {name:"Feu", selected:false},
