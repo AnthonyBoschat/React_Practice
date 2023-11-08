@@ -147,7 +147,6 @@ export const StateProvider = ({children}) => {
                     }
                 })
             }
-        console.log(copyPokemonsList)
         // On setState la liste de pokemon
         setPokemonsList(copyPokemonsList)
         }else{
