@@ -9,9 +9,6 @@ function MainContent(){
 
     // Methode
     const showProfilOfThisPokemon = (event) => {
-
-        
-
         // On change le state profilPokemon pour indiquer que l'utilisateur veut voir le profil d'un pokemon
         // On setState toutes les informations du pokemons qui seront importante pour le profil, image, nom
         const {name, image, type} = event.currentTarget.dataset
@@ -26,17 +23,12 @@ function MainContent(){
         copyProfilPokemon.visible = true
         copyProfilPokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(pokemonName)
         setProfilPokemon(copyProfilPokemon)
-        console.log(copyProfilPokemon)
-
-        
     }
 
     const generatePokemonList = (pokemon) => {
         if(pokemon.visible === true){
-            const tableauDeType = pokemon.apiTypes.map((type) => type.name)
-            const type = tableauDeType.join("")
             return(
-                <div data-image={pokemon.image} data-type={type} data-name={pokemon.name} onClick={showProfilOfThisPokemon} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${type}`}>
+                <div data-image={pokemon.image} data-type={pokemon.typeJoin} data-name={pokemon.name} onClick={showProfilOfThisPokemon} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${pokemon.typeJoin}`}>
                     <img title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
                 </div>
             ) 

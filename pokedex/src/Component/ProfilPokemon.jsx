@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { StateContext } from "../Context/StateContext";
+import ProfilPokemonName from "./ProfilPokemonName";
 
 function ProfilPokemon(){
     
@@ -60,7 +61,6 @@ function ProfilPokemon(){
         copyProfilPokemon.type = pokemonsListVisibleTrue[nextPokemonIndex].typeJoin
         copyProfilPokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(copyProfilPokemon.name)
         setProfilPokemon(copyProfilPokemon)
-        console.log(copyProfilPokemon)
     }
 
 
@@ -80,7 +80,7 @@ function ProfilPokemon(){
         <div id="profilPokemonOverlay" onClick={closeProfil}>
             <div id="profilPokemonBox">
                 <div id="profilPokemonHeaderCloseBox" className="childProfilPokemonBox">
-                    <span>{profilPokemon.name}</span>
+                    <ProfilPokemonName pokemon={profilPokemon} />
                     <button id="closeProfilButton" onClick={closeProfil}>X</button>
                 </div>
                 <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.type}` }>

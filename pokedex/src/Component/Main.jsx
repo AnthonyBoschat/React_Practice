@@ -18,6 +18,9 @@ function Main(){
                     pokemons.forEach(pokemon => {
                     pokemon.visible = false
                     pokemon.generationSelected = false
+                    const tableauDeType = pokemon.apiTypes.map((type) => type.name)
+                    const type = tableauDeType.join("")
+                    pokemon.typeJoin = type
                 })
                 setPokemonsList(pokemons)
                 }

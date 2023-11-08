@@ -27,10 +27,20 @@
             
 
             span{
+                display: flex;
+                gap: 0.5em;
                 padding-left: 1%;
-                font-size: 2em;
+                font-size: 1.1em;
                 font-weight: 600;
                 font-family: "Noto Sans", sans-serif;
+
+                .nameEvolutionClickable:hover{
+                    cursor: pointer;
+                }
+
+                .currentEvolution{
+                    font-weight: 900;
+                }
             }
 
             button{
