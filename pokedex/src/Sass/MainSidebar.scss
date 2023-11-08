@@ -32,6 +32,18 @@
             cursor: pointer;
         }}
         .generationSelected{opacity: 1;}
+
+        #pikachuRunningBox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            img{
+                height: 7em;
+            }
+        }
     }
 }
 

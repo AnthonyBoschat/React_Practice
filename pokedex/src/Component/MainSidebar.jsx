@@ -23,22 +23,24 @@ function MainSidebar(){
     }
     
     const generateBoutons = (bouton) => {
-        if(pokemonsList.length === 0){
-            return(
-                <button disabled key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
-            ) 
-        }else{
-            return(
-                <button key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
-            ) 
-        }
+        return(
+            <button key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
+        ) 
+    }
+
+    const waitingPikachu = () => {
+        return(
+            <div id="pikachuRunningBox">
+                <img id="pikachuRunning" src="https://media.tenor.com/SH31iAEWLT8AAAAi/pikachu-running.gifhttps://media.tenor.com/SH31iAEWLT8AAAAi/pikachu-running.gif" />
+            </div>
+        ) 
     }
     
     // Render
     return(
         <div id="sidebarBox">
             <div id="boutonsEnglobeBox">
-                {boutons.map((bouton) => generateBoutons(bouton))}
+                {pokemonsList.length !== 0 ? boutons.map((bouton) => generateBoutons(bouton)) : waitingPikachu()}
             </div>
         </div>
     )
