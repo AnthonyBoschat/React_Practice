@@ -121,7 +121,6 @@ export const StateProvider = ({children}) => {
                                 })
                             } 
                         }
-                        pokemon.typeJoin = tableauThisPokemonType.join("")
                     }
                     // Si la génération du pokemon n'est pas selected
                     else{

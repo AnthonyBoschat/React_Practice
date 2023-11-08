@@ -8,7 +8,6 @@ function ProfilPokemonName({pokemon}){
         let classe = null
         if(evolution.name === pokemon.name){classe = "nameEvolutionClickable currentEvolution"}
         else{classe = "nameEvolutionClickable"}
-
         return(<span key={`nameEvolution${evolution.name}`} data-name={evolution.name} onClick={changeCurrentPokemon} className={classe}>{evolution.name}</span>)
     }
 
@@ -18,6 +17,7 @@ function ProfilPokemonName({pokemon}){
         const pokemonNeedName = pokemonNeed[0].name
         const pokemonNeedImage = pokemonNeed[0].image
         const pokemonNeedType = pokemonNeed[0].typeJoin
+        console.log(pokemonNeed)
 
 
         const copyProfilPokemon = {...profilPokemon}
