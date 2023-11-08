@@ -60,6 +60,7 @@ function ProfilPokemon(){
         copyProfilPokemon.img = pokemonsListVisibleTrue[nextPokemonIndex].image
         copyProfilPokemon.type = pokemonsListVisibleTrue[nextPokemonIndex].typeJoin
         copyProfilPokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(copyProfilPokemon.name)
+        copyProfilPokemon.stats = pokemonsListVisibleTrue[nextPokemonIndex].stats
         setProfilPokemon(copyProfilPokemon)
     }
 
@@ -89,7 +90,7 @@ function ProfilPokemon(){
                     <div className="controle"><i onClick={changeProfilWithArrow} className="fa-solid fa-arrow-right showNextPokemon"></i></div>
                 </div>
                 <div id="profilPokemonPrecisionBox" className="childProfilPokemonBox">
-
+                    
                 </div>
             </div>
         </div>

@@ -12,6 +12,12 @@ function MainContent(){
         // On change le state profilPokemon pour indiquer que l'utilisateur veut voir le profil d'un pokemon
         // On setState toutes les informations du pokemons qui seront importante pour le profil, image, nom
         const {name, image, type} = event.currentTarget.dataset
+
+        const tableaupokemonStats = pokemonsList.filter(pokemon => {
+            return(pokemon.name === name)
+        }).map(element => (element.stats))
+
+        const pokemonStats = tableaupokemonStats[0]
         const pokemonName = name
         const pokemonImage = image
         const pokemonType = type
@@ -22,6 +28,7 @@ function MainContent(){
         copyProfilPokemon.type = pokemonType
         copyProfilPokemon.visible = true
         copyProfilPokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(pokemonName)
+        copyProfilPokemon.stats = pokemonStats
         setProfilPokemon(copyProfilPokemon)
     }
 
