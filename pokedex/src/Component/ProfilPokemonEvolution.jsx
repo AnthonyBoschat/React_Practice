@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { StateContext } from "../Context/StateContext"
 
-function ProfilPokemonName(){
+function ProfilPokemonEvolution(){
     //////// STATE //////////
     const {fetchAllEvolutionOfThisPokemon, pokemonsList, profilPokemon, setProfilPokemon} = useContext(StateContext)
 
@@ -29,4 +29,4 @@ function ProfilPokemonName(){
     )
 }
 
-export default ProfilPokemonName
+export default ProfilPokemonEvolution
