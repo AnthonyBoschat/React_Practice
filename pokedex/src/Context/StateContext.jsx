@@ -185,7 +185,8 @@ export const StateProvider = ({children}) => {
                             currentPokemonAnalys = pokemon.apiEvolutions[0].name
                         }
                         else{
-                            pokemon.apiEvolutions.map(evolution => tableauOfEvolution.push(evolution.name))
+                            tableauOfEvolution.push(pokemon)
+                            pokemon.apiEvolutions.map(evolution => tableauOfEvolution.push(evolution))
                             controle = false
                         }
                         
