@@ -4,11 +4,9 @@ import { StateContext } from "../Context/StateContext"
 function ProfilPokemonName(){
     //////// STATE //////////
     const {fetchAllEvolutionOfThisPokemon, pokemonsList, profilPokemon, setProfilPokemon} = useContext(StateContext)
-    console.log(pokemonsList)
 
     //////// METHODE //////////
     const renderEvolution = (evolution) => {
-        console.log(evolution.name)
         let classe = evolution.name === profilPokemon.name ? "nameEvolutionClickable currentEvolution" : "nameEvolutionClickable"
         return(<span key={`nameEvolution${evolution.name}`} data-name={evolution.name} onClick={changeCurrentPokemon} className={classe}>{evolution.name}</span>)
     }

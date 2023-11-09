@@ -17,7 +17,6 @@ function MainContent(){
     //////// METHODE /////////
     const showProfilOfThisPokemon = (pokemon) => {
         pokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(pokemon.name)
-        console.log(pokemon.tableauOfEvolution)
         setProfilDisplay(true)
         setProfilPokemon(pokemon)
     }

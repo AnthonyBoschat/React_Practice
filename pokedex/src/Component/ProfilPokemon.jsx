@@ -26,14 +26,13 @@ function ProfilPokemon(){
         // On récupère la liste de tout les pokemons visibles
         const pokemonsListVisibleTrue = pokemonsList.filter((pokemon) => pokemon.visible === true)
         // On récupère l'index du pokemon en cours de visionnage dans pokemonsListVisibleTrue
-        const indexOfThisPokemon = pokemonsList.findIndex((element) => element.name === profilPokemon.name)
+        const indexOfThisPokemon = pokemonsListVisibleTrue.findIndex((element) => element.name === profilPokemon.name)
         // On récupèe la longueur de la liste pokemon
         const lengthOfPokemonsList = pokemonsListVisibleTrue.length
         // On initialise l'index du prochain pokemon à afficher à null
         let nextPokemonIndex = null
         // S'il clique sur la fléche de droite
-        if(event.target.classList.contains("showNextPokemon")){
-            
+        if(event.currentTarget.classList.contains("showNextPokemon")){
             // On vérifie qu'il ne s'agit pas du dernier pokemon, l'index augmente de 1
             if(indexOfThisPokemon != lengthOfPokemonsList - 1){
                 nextPokemonIndex = indexOfThisPokemon + 1
