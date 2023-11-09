@@ -1,0 +1,14 @@
+#logoBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    outline: 1px solid black;
+    background: rgb(142, 213, 255);
+
+    img{
+        width: 40%;
+        height: auto;
+    }
+}

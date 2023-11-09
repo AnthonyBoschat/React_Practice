@@ -1,5 +1,6 @@
 import HeaderSelect from "./HeaderSelect"
-import pikachu from "../Image/pikachu.png"
+import HeaderLogo from "./HeaderLogo"
+
 function Header(){
     // State
 
@@ -8,9 +9,7 @@ function Header(){
     // Render
     return(
         <header>
-            <div id="logoBox">
-                <img src={pikachu} alt="" />
-            </div>
+            <HeaderLogo />
             <HeaderSelect/>
         </header>
     )

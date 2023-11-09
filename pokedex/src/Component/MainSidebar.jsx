@@ -2,10 +2,15 @@ import React, { useContext, useEffect, useState } from "react"
 import { StateContext } from "../Context/StateContext"
 function MainSidebar(){
 
-    // State et Context
+    ///////// STATE ///////////
     const {pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, boutons, setBoutons} = useContext(StateContext)
 
-    // Methode
+
+
+
+
+
+    ///////// METHODE ///////////
     const showPokemonOfGeneration = (event) => {
         // On ajoute ou retire la classe generationSeleted
         event.target.classList.contains("generationSelected") ? event.target.classList.remove("generationSelected") :event.target.classList.add("generationSelected")
@@ -19,9 +24,10 @@ function MainSidebar(){
         })
         // On setState les boutons
         setBoutons(copyBoutons)
+        // On filtre la liste de pokemon pour rendre visible ceux qui passent le filtrage
         filtrage(pokemonsList)
     }
-    
+
     const generateBoutons = (bouton) => {
         return(
             <button key={bouton.id} onClick={showPokemonOfGeneration}>{bouton.name}</button>
@@ -36,7 +42,14 @@ function MainSidebar(){
         ) 
     }
     
-    // Render
+
+
+
+
+
+
+
+    /////////// RENDER //////////////
     return(
         <div id="sidebarBox">
             <div id="boutonsEnglobeBox">

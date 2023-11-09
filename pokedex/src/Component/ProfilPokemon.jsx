@@ -4,29 +4,29 @@ import ProfilPokemonName from "./ProfilPokemonName";
 
 function ProfilPokemon(){
     
-    // State
-    const {fetchAllEvolutionOfThisPokemon, profilPokemon, setProfilPokemon, pokemonsList, setPokemonsList} = useContext(StateContext)
+    //////// STATE //////////
+    const {fetchAllEvolutionOfThisPokemon, profilPokemon, setProfilPokemon, pokemonsList, setPokemonsList, profilDisplay, setProfilDisplay} = useContext(StateContext)
 
 
 
 
 
 
-    // Methode
+    //////// METHODE //////////
+
     // Pour fermer l'onglet profil
     const closeProfil = (event) => {
         if(event.target.id == "profilPokemonOverlay" || event.target.id =="closeProfilButton"){
-            const copyProfilPokemon = {...profilPokemon}
-            copyProfilPokemon.visible = false
-            setProfilPokemon(copyProfilPokemon)
+            setProfilDisplay(false)
         }
     }
 
+    // Pour changer l'affichage du pokemon
     const changeProfilWithArrow = (event) => {
         // On récupère la liste de tout les pokemons visibles
         const pokemonsListVisibleTrue = pokemonsList.filter((pokemon) => pokemon.visible === true)
         // On récupère l'index du pokemon en cours de visionnage dans pokemonsListVisibleTrue
-        const indexOfThisPokemon = pokemonsListVisibleTrue.findIndex((element) => element.name === profilPokemon.name)
+        const indexOfThisPokemon = pokemonsList.findIndex((element) => element.name === profilPokemon.name)
         // On récupèe la longueur de la liste pokemon
         const lengthOfPokemonsList = pokemonsListVisibleTrue.length
         // On initialise l'index du prochain pokemon à afficher à null
@@ -54,14 +54,11 @@ function ProfilPokemon(){
                 nextPokemonIndex = lengthOfPokemonsList - 1
             }
         }
-        // On créé une copie du tableau du pokemon en cours de visionnage
-        const copyProfilPokemon = {...profilPokemon}
-        copyProfilPokemon.name = pokemonsListVisibleTrue[nextPokemonIndex].name
-        copyProfilPokemon.img = pokemonsListVisibleTrue[nextPokemonIndex].image
-        copyProfilPokemon.type = pokemonsListVisibleTrue[nextPokemonIndex].typeJoin
-        copyProfilPokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(copyProfilPokemon.name)
-        copyProfilPokemon.stats = pokemonsListVisibleTrue[nextPokemonIndex].stats
-        setProfilPokemon(copyProfilPokemon)
+        // On setup le profil du prochain pokemon à afficher
+        const nextPokemonToShow = pokemonsListVisibleTrue[nextPokemonIndex]
+        nextPokemonToShow.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(nextPokemonToShow.name)
+        // On setState le profil de ce pokemon
+        setProfilPokemon(nextPokemonToShow)
     }
 
 
@@ -72,8 +69,8 @@ function ProfilPokemon(){
 
 
 
-    // Render
-    if(!profilPokemon.visible){
+    //////// RENDER //////////
+    if(!profilDisplay){
         return null
     }
 
@@ -81,12 +78,12 @@ function ProfilPokemon(){
         <div id="profilPokemonOverlay" onClick={closeProfil}>
             <div id="profilPokemonBox">
                 <div id="profilPokemonHeaderCloseBox" className="childProfilPokemonBox">
-                    <ProfilPokemonName pokemon={profilPokemon} />
+                    <ProfilPokemonName />
                     <button id="closeProfilButton" onClick={closeProfil}>X</button>
                 </div>
-                <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.type}` }>
+                <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.typeJoin}` }>
                     <div className="controle"><i onClick={changeProfilWithArrow} className="fa-solid fa-arrow-left showPreviousPokemon"></i></div>
-                    <img src={profilPokemon.img} title={profilPokemon.name} alt={profilPokemon.name} />
+                    <img src={profilPokemon.image} title={profilPokemon.name} alt={profilPokemon.name} />
                     <div className="controle"><i onClick={changeProfilWithArrow} className="fa-solid fa-arrow-right showNextPokemon"></i></div>
                 </div>
                 <div id="profilPokemonPrecisionBox" className="childProfilPokemonBox">

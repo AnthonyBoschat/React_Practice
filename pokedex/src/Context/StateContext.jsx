@@ -6,14 +6,15 @@ export const StateContext = createContext();
 
 // On définie son provider et les state par défaut
 export const StateProvider = ({children}) => {
-    const [profilPokemon, setProfilPokemon] = useState({
-        visible:false,
-        img:null,
-        name:null,
-        type:null,
-    })
+    // La liste de tout les pokemons
     const [pokemonsList, setPokemonsList] = useState([])
+    // Le profil du pokemon en cours de visionnage
+    const [profilPokemon, setProfilPokemon] = useState(null)
+    // Permet d'afficher ou non le profile d'un pokemon
+    const [profilDisplay, setProfilDisplay] = useState(false)
+    // Affiche le logo ou non
     const [logoVisible, setLogoVisible] = useState(true)
+    // Liste des boutons de générations de pokémons
     const [boutons, setBoutons] = useState([
         {id:1, name:"Première génération", generation:1, selected:false},
         {id:2, name:"Deuxième génération", generation:2, selected:false},
@@ -24,6 +25,7 @@ export const StateProvider = ({children}) => {
         {id:7, name:"Septième génération", generation:7, selected:false},
         {id:8, name:"Huitième génération", generation:8, selected:false},
     ])
+    // Liste des boutons de type de pokémons
     const [boutonsSelectType, setBoutonsSelectType] = useState([
         {name:"Feu", selected:false},
         {name:"Plante", selected:false},
@@ -44,7 +46,8 @@ export const StateProvider = ({children}) => {
         {name:"Ténèbres", selected:false},
         {name:"Acier", selected:false}
     ]);
-    // fonction qui permet de filtrer les pokemons selon les types selectionner et de setState la nouvelle liste
+
+    // Fonction qui permet d'afficher les pokémons demander en fonction de leurs type, et de leurs générations
     const filtrage = (pokemonsList) => {
         // On créé une copie de la liste de tout les pokemons
         const copyPokemonsList = [...pokemonsList]
@@ -54,7 +57,6 @@ export const StateProvider = ({children}) => {
         /////////////////////////////////////////////////
         const generationSelected = boutons.filter((bouton) => bouton.selected == true)
 
-
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////// Modification pour chaque pokemon de la clef generationSelected en fonction des générations choisi
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,10 +65,8 @@ export const StateProvider = ({children}) => {
         if(generationSelected.length > 0){
             // On supprime le logo
             setLogoVisible(false)
-
             // On réinitialise tout les generationSelected à false
             copyPokemonsList.map(pokemon => pokemon.generationSelected = false)
-
             // On change la clef generationSelected des pokemons qui sont des generations selectionner
             generationSelected.forEach(generation => {
                 copyPokemonsList.filter(pokemon =>
@@ -77,9 +77,9 @@ export const StateProvider = ({children}) => {
             })
 
 
-            ///////////////////////////////////////////////////////////
-            // Changement de la clef visible selon le type du pokemon
-            ///////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Changement de la clef visible selon le type du pokemon et si le pokemon a generationSelected en true
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             // On créé un tableau qui correspond à tout les types selectionner
             const tableauTypeSelected = boutonsSelectType.filter((element) => element.selected === true)
@@ -141,7 +141,6 @@ export const StateProvider = ({children}) => {
                             tableauThisPokemonType.push(thisPokemonType.name)
                         })
                         // On attribut à ce pokemon la clef typeJoin et on modifie sa clef visible
-                        pokemon.typeJoin = tableauThisPokemonType.join("")
                         pokemon.visible = true
                     }
                     // Si leurs générations n'est pas selected
@@ -150,13 +149,16 @@ export const StateProvider = ({children}) => {
                     }
                 })
             }
-        // On setState la liste de pokemon
-        setPokemonsList(copyPokemonsList)
-        }else{
+            // On setState la liste de pokemon
+            setPokemonsList(copyPokemonsList)
+        }
+        // Si aucune génération n'est selectionner
+        else{
             // On ajoute le logo
             setLogoVisible(true)
         }}
         
+    // Fonction qui permet de récupérer, à partir du nom d'un pokemon, un tableau comprenant toute ses évolutions
     const fetchAllEvolutionOfThisPokemon = (pokemonName) => {
         let currentPokemonAnalys = pokemonName
         let controle = true
@@ -201,12 +203,13 @@ export const StateProvider = ({children}) => {
                 }
             })
         }
-
         return tableauOfEvolution
     }
 
+
+    ///// RENDER DU CONTEXTE //////
     return(
-        <StateContext.Provider value={{fetchAllEvolutionOfThisPokemon, pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, profilPokemon, setProfilPokemon, boutons, setBoutons}}>
+        <StateContext.Provider value={{profilDisplay, setProfilDisplay, fetchAllEvolutionOfThisPokemon, pokemonsList, setPokemonsList, logoVisible, setLogoVisible, boutonsSelectType, setBoutonsSelectType, filtrage, profilPokemon, setProfilPokemon, boutons, setBoutons}}>
             {children}
         </StateContext.Provider>
     )

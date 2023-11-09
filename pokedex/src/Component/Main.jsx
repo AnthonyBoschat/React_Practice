@@ -5,8 +5,16 @@ import { StateContext } from "../Context/StateContext"
 
 function Main(){
 
+    ////////// STATE ///////////
     const {setPokemonsList} = useContext(StateContext)
 
+
+
+
+
+    
+
+    ////////// METHODE /////////////
     // Fonction qui récupère toute la liste des pokemons au chargement de la page
     useEffect(() => {
         let controle =  false
@@ -34,6 +42,14 @@ function Main(){
         }
     }, [])
 
+
+
+
+
+
+
+
+    ////////// RENDER ////////////
     return(
         <main>
             <MainSidebar />
