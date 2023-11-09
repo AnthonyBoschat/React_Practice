@@ -5,7 +5,7 @@ import ProfilPokemonName from "./ProfilPokemonName";
 function ProfilPokemon(){
     
     //////// STATE //////////
-    const {fetchAllEvolutionOfThisPokemon, profilPokemon, setProfilPokemon, pokemonsList, setPokemonsList, profilDisplay, setProfilDisplay} = useContext(StateContext)
+    const {fetchAllEvolutionOfThisPokemon, profilPokemon, setProfilPokemon, pokemonsList, profilDisplay, setProfilDisplay} = useContext(StateContext)
 
 
 
