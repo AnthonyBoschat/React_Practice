@@ -5,7 +5,6 @@ function ProfilPokemonCarousselle(){
 
     /////// STATE /////////
     const {profilPokemon, setProfilPokemon, pokemonsList, fetchAllEvolutionOfThisPokemon} = useContext(StateContext)
-    
     /////// METHODE /////////
     const changeFocusOfPokemonEvolution = (event) => {
         const newPokemonToFocus = pokemonsList.filter(pokemon => pokemon.name === event.currentTarget.alt)
