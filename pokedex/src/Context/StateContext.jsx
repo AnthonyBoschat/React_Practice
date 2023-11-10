@@ -186,7 +186,13 @@ export const StateProvider = ({children}) => {
                         }
                         else{
                             tableauOfEvolution.push(pokemon)
-                            pokemon.apiEvolutions.map(evolution => tableauOfEvolution.push(evolution))
+                            pokemon.apiEvolutions.map(evolution => {
+                                pokemonsList.map(pokemon => {
+                                    if(pokemon.name === evolution.name){
+                                        tableauOfEvolution.push(pokemon)
+                                    }
+                                })
+                            })
                             controle = false
                         }
                         

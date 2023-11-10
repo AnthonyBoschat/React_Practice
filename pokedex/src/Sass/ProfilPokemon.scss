@@ -55,37 +55,34 @@
         }
 
         #profilPokemonImageBox{
+            outline: 1px solid black;
             
             height: 52%;
             display: flex;
             justify-content: center;
+            align-items: center;
+            gap: 1em;
+            //overflow-x: hidden;
+
+            
             img{
-                height: 100%;
-                width: auto;
-            }
-            div.controle{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
+                transition: all 0.5s;
 
-                i{
-                    outline: 1px solid black;
-                    border-radius: 100%;
-                    padding: 0.3em;
-                    background: rgba(255, 255, 255, 0.477);
-                    font-size: 2.5em;
-                    transition: 0.1s;
-                    opacity: 0.7;
-                }
-
-                i:hover{
-                    opacity: 1;
+                &:hover{
                     cursor: pointer;
-                    font-size: 3em;
-                    background: rgba(255, 255, 255, 0.617);
                 }
             }
+
+            .focus{
+                height: 70%;
+                opacity: 1;
+            }
+
+            .unfocus{
+                height: 30%;
+                opacity: 0.4;
+            }
+            
         }
 
         #profilPokemonPrecisionBox{
