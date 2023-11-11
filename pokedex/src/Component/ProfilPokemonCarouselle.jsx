@@ -1,40 +1,36 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { StateContext } from "../Context/StateContext";
 
 function ProfilPokemonCarousselle(){
 
+    //// REF
+    const carouselContainerRef = useRef(null)
+
     /////// STATE /////////
+    const [calculInformation, setCalculInformation] = useState({
+        carouselContainer:null
+    })
     const {profilPokemon, setProfilPokemon, pokemonsList, fetchAllEvolutionOfThisPokemon} = useContext(StateContext)
-    const [valueDecalage, setValueDecalage] = useState(150)
-    const [carouselContainer, setCarouselContainer] = useState({
-        //outline: '1px solid black',
+    const [styleDescription, setStyleDescription] = useState({
+        left:0,
+        gap:15,
+    })
+    const [carouselContainerStyle, setCarouselContainer] = useState({
+        outline: '1px solid black',
         position: "relative",
-        left: `${valueDecalage}px`,
+        left: `${styleDescription.left}px`,
         height: '100%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        gap: '15px',
+        gap: `${styleDescription.gap}px`,
         transition: 'all 0.5s'
     })
     /////// METHODE /////////
-
+    
     const changePositionCarouselContainer = (bool) => {
-        setValueDecalage(currentValue => 
-            {
-                if(bool){
-                    const copyCarouselContainer = {...carouselContainer}
-                    copyCarouselContainer.left = `${currentValue - 135}px`
-                    setCarouselContainer(copyCarouselContainer)
-                    return(currentValue - 135)
-                }
-                else{
-                    const copyCarouselContainer = {...carouselContainer}
-                    copyCarouselContainer.left = `${currentValue + 135}px`
-                    setCarouselContainer(copyCarouselContainer)
-                    return(currentValue + 135)
-                }
-            })
+        console.log(calculInformation)
+        console.log("quelque chose à faire...")
     }
 
     const changeFocusOfPokemonEvolution = (event) => {
@@ -45,6 +41,7 @@ function ProfilPokemonCarousselle(){
         changePositionCarouselContainer(positionAfter)
     }   
 
+    //
     const displayImageOfEvolutions = (evolution) => {
         let classe = evolution.name === profilPokemon.name ? "focus" : "unfocus"
         return(
@@ -52,12 +49,27 @@ function ProfilPokemonCarousselle(){
         )
     }
 
+    // Fonction pour récupérer les informations nécessaire pour le déplacement du carousel
+    const updateCalculInformation = () => {
+        if(carouselContainerRef){
+            const copyCalculInformation = {...calculInformation} // Copie
+            copyCalculInformation.carouselContainer = carouselContainerRef.current.offsetWidth // Nouvelle valeur de la taille du carousel
+            setCalculInformation(copyCalculInformation) // SetState de ces informations 
+        } 
+    }
 
+    
+    useEffect(() => {
+        updateCalculInformation() // Fonction pour lancer une première fois les récupération nécessaire pour les calcules de carousel
+        window.addEventListener("resize", updateCalculInformation) // Et update ces information au resize de la fenêtre
+
+        return(() => {window.removeEventListener("resize", updateCalculInformation)}) // Fonction de nettoyage
+    }, [])
     /////// RENDER /////////
 
     return(
         <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.typeJoin}`}>
-            <div className="carouselContainer" style={carouselContainer}>
+            <div ref={carouselContainerRef} className="carouselContainer" style={carouselContainerStyle}>
                 {profilPokemon.tableauOfEvolution.map(evolution => displayImageOfEvolutions(evolution))}
             </div>
         </div>
