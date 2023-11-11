@@ -5,6 +5,7 @@ function ProfilPokemonCarousselle(){
 
     /////// STATE /////////
     const {profilPokemon, setProfilPokemon, pokemonsList, fetchAllEvolutionOfThisPokemon} = useContext(StateContext)
+
     /////// METHODE /////////
     const changeFocusOfPokemonEvolution = (event) => {
         const newPokemonToFocus = pokemonsList.filter(pokemon => pokemon.name === event.currentTarget.alt)
@@ -13,7 +14,7 @@ function ProfilPokemonCarousselle(){
     }   
 
     const displayImageOfEvolutions = (evolution) => {
-        const classe = evolution.name === profilPokemon.name ? "focus" : "unfocus"
+        let classe = evolution.name === profilPokemon.name ? "focus" : "unfocus"
         return(
             <img key={`imageCarousselle${evolution.name}`} onClick={changeFocusOfPokemonEvolution} className={classe} src={evolution.image} title={evolution.name} alt={evolution.name} />
         )
@@ -24,7 +25,9 @@ function ProfilPokemonCarousselle(){
 
     return(
         <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.typeJoin}`}>
-            {profilPokemon.tableauOfEvolution.map(evolution => displayImageOfEvolutions(evolution))}
+            <div className="carouselleContainer">
+                {profilPokemon.tableauOfEvolution.map(evolution => displayImageOfEvolutions(evolution))}
+            </div>
         </div>
     )
 }

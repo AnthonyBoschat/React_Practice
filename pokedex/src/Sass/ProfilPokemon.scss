@@ -56,33 +56,37 @@
 
         #profilPokemonImageBox{
             outline: 1px solid black;
-            
             height: 52%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1em;
-            //overflow-x: hidden;
 
-            
-            img{
+            .carouselleContainer{
+                position: relative;
+                outline: 1px solid black;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1em;
                 transition: all 0.5s;
 
-                &:hover{
-                    cursor: pointer;
+                img{
+                    transition: all 0.5s;
+    
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+    
+                .focus{
+                    height: 70%;
+                    opacity: 1;
+                }
+    
+                .unfocus{
+                    height: 30%;
+                    opacity: 0.4;
                 }
             }
-
-            .focus{
-                height: 70%;
-                opacity: 1;
-            }
-
-            .unfocus{
-                height: 30%;
-                opacity: 0.4;
-            }
-            
+            //overflow-x: hidden;
         }
 
         #profilPokemonPrecisionBox{
