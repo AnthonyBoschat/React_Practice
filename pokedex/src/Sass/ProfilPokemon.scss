@@ -57,17 +57,9 @@
         #profilPokemonImageBox{
             outline: 1px solid black;
             height: 52%;
+            overflow-x: hidden;
 
-            .carouselleContainer{
-                position: relative;
-                outline: 1px solid black;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 1em;
-                transition: all 0.5s;
-
+            .carouselContainer{
                 img{
                     transition: all 0.5s;
     
@@ -77,12 +69,12 @@
                 }
     
                 .focus{
-                    height: 70%;
+                    height: 280px;
                     opacity: 1;
                 }
     
                 .unfocus{
-                    height: 30%;
+                    height: 120px;
                     opacity: 0.4;
                 }
             }
