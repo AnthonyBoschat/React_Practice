@@ -84,7 +84,7 @@ function ProfilPokemonCarousselle(){
         const paddingLeft = rest / 2
         const mulltiplicateur = (index + 1)
         const newPaddingLeft = 0 + paddingLeft * mulltiplicateur
-        const contro = newPaddingLeft - (calculInformation.imageFocus * (index))
+        const contro = (newPaddingLeft - (calculInformation.imageFocus * (index))) - (calculInformation.imageUnfocus * index)
 
 
         console.log("reste : ",rest)
