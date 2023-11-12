@@ -20,7 +20,6 @@ function ProfilPokemonCarousselle(){
     })
 
     const [carouselContainerStyle, setCarouselContainerStyle] = useState({
-        outline: "1px solid red",
         position: "relative",
         left: `${styleDescription.left}px`,
         height: '100%',
