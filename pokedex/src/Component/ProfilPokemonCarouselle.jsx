@@ -11,12 +11,12 @@ function ProfilPokemonCarousselle(){
     /////// STATE /////////
     const [calculInformation, setCalculInformation] = useState({
         carouselContainer:null,
-        imageFocus:null
+        imageFocus:null,
+        imageUnfocus:null
     })
     const {profilPokemon, setProfilPokemon, pokemonsList, fetchAllEvolutionOfThisPokemon} = useContext(StateContext)
     const [styleDescription, setStyleDescription] = useState({
-        left:null,
-        gap:null,
+        left:0,
     })
 
     const [carouselContainerStyle, setCarouselContainerStyle] = useState({
@@ -27,13 +27,12 @@ function ProfilPokemonCarousselle(){
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        gap: `${styleDescription.gap}px`,
         transition: 'all 0.5s'
     })
     /////// METHODE /////////
     
     const changePositionCarouselContainer = (bool) => {
-        console.log(calculInformation)
+        //console.log(calculInformation)
         console.log("quelque chose à faire...")
     }
 
@@ -44,7 +43,7 @@ function ProfilPokemonCarousselle(){
         const positionAfter = newPokemonToFocus[0].id > profilPokemon.id
         changePositionCarouselContainer(positionAfter)
         updateCalculInformation()
-    }   
+    }
 
     //
     const displayImageOfEvolutions = (evolution) => {
@@ -67,6 +66,7 @@ function ProfilPokemonCarousselle(){
             const copyCalculInformation = {...calculInformation} // Copie
             copyCalculInformation.carouselContainer = carouselContainerRef.current.offsetWidth // Nouvelle valeur de la taille du carousel
             copyCalculInformation.imageFocus = imageFocusRef.current.offsetWidth
+            copyCalculInformation.imageUnfocus = imageUnfocusRef.current.offsetWidth
             setCalculInformation(copyCalculInformation) // SetState de ces informations 
         } 
     }
@@ -74,24 +74,26 @@ function ProfilPokemonCarousselle(){
     useEffect(() => {
         updateCalculInformation() // Fonction pour lancer une première fois les récupération nécessaire pour les calcules de carousel
         window.addEventListener("resize", updateCalculInformation) // Et update ces information au resize de la fenêtre
-
         return(() => {window.removeEventListener("resize", updateCalculInformation)}) // Fonction de nettoyage
     }, [])
 
     useEffect(() => {
+
         const index = profilPokemon.tableauOfEvolution.findIndex(pokemon => pokemon.name === profilPokemon.name)
-        console.log(index)
         const rest = calculInformation.carouselContainer - calculInformation.imageFocus
-        const paddingLeft = rest/2
-        const newPaddingLeft = paddingLeft * (index + 1)
+        const paddingLeft = rest / 2
+        const mulltiplicateur = (index + 1)
+        const newPaddingLeft = 0 + paddingLeft * mulltiplicateur
+        const contro = newPaddingLeft - (calculInformation.imageFocus * (index))
 
 
-
+        console.log("reste : ",rest)
+        console.log(calculInformation)
         /*const copyStyleDescription = {...styleDescription}
         copyStyleDescription.left = paddingLeft
         setStyleDescription(copyStyleDescription)*/
         const copyCarouselContainerStyle = {...carouselContainerStyle}
-        copyCarouselContainerStyle.left = newPaddingLeft
+        copyCarouselContainerStyle.left = contro
         setCarouselContainerStyle(copyCarouselContainerStyle)
     }, [calculInformation])
 
