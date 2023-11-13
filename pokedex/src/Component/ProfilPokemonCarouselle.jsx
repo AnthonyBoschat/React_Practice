@@ -3,48 +3,29 @@ import { StateContext } from "../Context/StateContext";
 
 function ProfilPokemonCarousselle(){
 
-    //// REF
-    const carouselContainerRef = useRef(null)
-    const imageFocusRef = useRef(null)
-    const imageUnfocusRef = useRef(null)
-
     /////// STATE /////////
+    const {profilPokemon, setProfilPokemon, pokemonsList, fetchAllEvolutionOfThisPokemon} = useContext(StateContext)
+
+
     const [calculInformation, setCalculInformation] = useState({
         carouselContainer:null,
         imageFocus:null,
         imageUnfocus:null
     })
-    const {profilPokemon, setProfilPokemon, pokemonsList, fetchAllEvolutionOfThisPokemon} = useContext(StateContext)
-    const [styleDescription, setStyleDescription] = useState({
-        left:0,
-    })
 
     const [carouselContainerStyle, setCarouselContainerStyle] = useState({
         position: "relative",
-        left: `${styleDescription.left}px`,
+        left: null,
         height: '100%',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
         transition: 'all 0.5s'
     })
+
+
     /////// METHODE /////////
-    
-    const changePositionCarouselContainer = (bool) => {
-        //console.log(calculInformation)
-        console.log("quelque chose à faire...")
-    }
-
-    const changeFocusOfPokemonEvolution = (event) => {
-        const newPokemonToFocus = pokemonsList.filter(pokemon => pokemon.name === event.currentTarget.alt)
-        newPokemonToFocus[0].tableauOfEvolution = fetchAllEvolutionOfThisPokemon(newPokemonToFocus[0].name)
-        setProfilPokemon(newPokemonToFocus[0])
-        const positionAfter = newPokemonToFocus[0].id > profilPokemon.id
-        changePositionCarouselContainer(positionAfter)
-        updateCalculInformation()
-    }
-
-    //
+    // Génère les images de pokemon
     const displayImageOfEvolutions = (evolution) => {
         let classe = evolution.name === profilPokemon.name ? "focus" : "unfocus"
         let ref = evolution.name === profilPokemon.name ? imageFocusRef : imageUnfocusRef
@@ -52,14 +33,19 @@ function ProfilPokemonCarousselle(){
             <img ref={ref} key={`imageCarousselle${evolution.name}`} onClick={changeFocusOfPokemonEvolution} className={classe} src={evolution.image} title={evolution.name} alt={evolution.name} />
         )
     }
+    
+    
+
+    // Action après le clique sur une image
+    const changeFocusOfPokemonEvolution = (event) => {
+        const newPokemonToFocus = pokemonsList.filter(pokemon => pokemon.name === event.currentTarget.alt) // le pokemon cliquer
+        newPokemonToFocus[0].tableauOfEvolution = fetchAllEvolutionOfThisPokemon(newPokemonToFocus[0].name) // On récupère sa liste d'évolution
+        setProfilPokemon(newPokemonToFocus[0]) // on setState le nouveau profil
+        updateCalculInformation() // On update les calculs
+    }
 
 
-
-
-
-
-
-    // Fonction pour récupérer les informations nécessaire pour le déplacement du carousel
+    // Récupère la taille de la box carousel / de la grande image / de la petite image -> setState de ces informations dans calculInformation
     const updateCalculInformation = () => {
         if(carouselContainerRef){
             const copyCalculInformation = {...calculInformation} // Copie
@@ -70,35 +56,46 @@ function ProfilPokemonCarousselle(){
         } 
     }
     
+
+
+    //// useEffect
+    // Se lance au montage du composant, et à chaque redimensionnement de la page
     useEffect(() => {
         updateCalculInformation() // Fonction pour lancer une première fois les récupération nécessaire pour les calcules de carousel
         window.addEventListener("resize", updateCalculInformation) // Et update ces information au resize de la fenêtre
         return(() => {window.removeEventListener("resize", updateCalculInformation)}) // Fonction de nettoyage
     }, [])
 
+    // A chaque fois que calculInformation, ou profilPokemon evolue
     useEffect(() => {
-
+        // On récupère l'index du pokemon
         const index = profilPokemon.tableauOfEvolution.findIndex(pokemon => pokemon.name === profilPokemon.name)
-        const rest = calculInformation.carouselContainer - calculInformation.imageFocus
-        const paddingLeft = rest / 2
-        const mulltiplicateur = (index + 1)
-        const newPaddingLeft = 0 + paddingLeft * mulltiplicateur
-        const contro = (newPaddingLeft - (calculInformation.imageFocus * (index))) - (calculInformation.imageUnfocus * index)
+
+        // On récupère les dimensions des images et du carousel
+        const dimensionContainerCarousel = calculInformation.carouselContainer
+        const dimensionImageLarge = calculInformation.imageFocus
+        const dimensionImageSmall = calculInformation.imageUnfocus
+
+        // On calcul le padding de base, si le pokemon était à l'index 0
+        const reste = dimensionContainerCarousel - dimensionImageLarge
+        const paddingBasic = reste / 2
+        const paddingEnding = paddingBasic - (dimensionImageSmall * index)
 
 
-        console.log("reste : ",rest)
-        console.log(calculInformation)
-        /*const copyStyleDescription = {...styleDescription}
-        copyStyleDescription.left = paddingLeft
-        setStyleDescription(copyStyleDescription)*/
+        // On applique le nouveau padding au style du carousel
         const copyCarouselContainerStyle = {...carouselContainerStyle}
-        copyCarouselContainerStyle.left = contro
+        copyCarouselContainerStyle.left = paddingEnding
         setCarouselContainerStyle(copyCarouselContainerStyle)
-    }, [calculInformation])
+    }, [profilPokemon, calculInformation])
 
+
+
+    //// REF
+    const carouselContainerRef = useRef(null)
+    const imageFocusRef = useRef(null)
+    const imageUnfocusRef = useRef(null)
 
     /////// RENDER /////////
-
     return(
         <div id="profilPokemonImageBox" className={`childProfilPokemonBox ${profilPokemon.typeJoin}`}>
             <div ref={carouselContainerRef} className="carouselContainer" style={carouselContainerStyle}>
