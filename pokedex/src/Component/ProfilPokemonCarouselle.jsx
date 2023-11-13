@@ -10,7 +10,7 @@ function ProfilPokemonCarousselle(){
     const [calculInformation, setCalculInformation] = useState({
         carouselContainer:null,
         imageFocus:null,
-        imageUnfocus:null
+        imageUnfocus:0
     })
 
     const [carouselContainerStyle, setCarouselContainerStyle] = useState({
@@ -50,8 +50,8 @@ function ProfilPokemonCarousselle(){
         if(carouselContainerRef){
             const copyCalculInformation = {...calculInformation} // Copie
             copyCalculInformation.carouselContainer = carouselContainerRef.current.offsetWidth // Nouvelle valeur de la taille du carousel
-            copyCalculInformation.imageFocus = imageFocusRef.current.offsetWidth
-            copyCalculInformation.imageUnfocus = imageUnfocusRef.current.offsetWidth
+            copyCalculInformation.imageFocus = imageFocusRef.current.offsetWidth // Taille de la grande image
+            if(imageUnfocusRef.current){copyCalculInformation.imageUnfocus = imageUnfocusRef.current.offsetWidth} // S'il y a un pokemon en Unfocus, taille de la petite image, sinon, prend la taille par défaut initialiser
             setCalculInformation(copyCalculInformation) // SetState de ces informations 
         } 
     }
@@ -79,6 +79,7 @@ function ProfilPokemonCarousselle(){
         // On calcul le padding de base, si le pokemon était à l'index 0
         const reste = dimensionContainerCarousel - dimensionImageLarge
         const paddingBasic = reste / 2
+        // On ajuste le padding, en fonction de l'index du pokemon
         const paddingEnding = paddingBasic - (dimensionImageSmall * index)
 
 
@@ -88,7 +89,7 @@ function ProfilPokemonCarousselle(){
         setCarouselContainerStyle(copyCarouselContainerStyle)
     }, [profilPokemon, calculInformation])
 
-
+    
 
     //// REF
     const carouselContainerRef = useRef(null)
