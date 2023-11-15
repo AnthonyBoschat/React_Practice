@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext } from "react"
 import PokemonLogo from "../Image/pokemonLogo.png"
 import { StateContext } from "../Context/StateContext"
 import ProfilPokemon from "./ProfilPokemon"
@@ -7,7 +7,7 @@ function MainContent(){
 
 
     //////// STATE /////////
-    const {fetchAllEvolutionOfThisPokemon, pokemonsList, setPokemonsList, logoVisible, setLogoVisible, profilPokemon, setProfilPokemon, profilDisplay, setProfilDisplay} = useContext(StateContext)
+    const {fetchAllEvolutionOfThisPokemon, pokemonsList,  logoVisible, setProfilPokemon,  setProfilDisplay} = useContext(StateContext)
 
 
 
@@ -25,7 +25,7 @@ function MainContent(){
         if(pokemon.visible === true){
             return(
                 <div onClick={() => showProfilOfThisPokemon(pokemon)} key={`keyCapsule_${pokemon.name}`} className={`capsulePokemonProfil ${pokemon.typeJoin}`}>
-                    <img title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"></img>
+                    <img title={pokemon.name} src={pokemon.image} key={`keyImage_${pokemon.name}`} loading="lazy"/>
                 </div>
             ) 
         }
