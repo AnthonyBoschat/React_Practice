@@ -70,10 +70,11 @@ function ProfilPokemonCarousselle(){
     //// useEffect
     // Se lance au montage du composant, et à chaque redimensionnement de la page
     useEffect(() => {
-        const debouncedUpdateCalculInformation = debounce(updateCalculInformation, 500)
-        updateCalculInformation() // Fonction pour lancer une première fois les récupération nécessaire pour les calcules de carousel
-        window.addEventListener("resize", debouncedUpdateCalculInformation) // Et update ces information au resize de la fenêtre
-        return(() => {window.removeEventListener("resize", debouncedUpdateCalculInformation)}) // Fonction de nettoyage
+        const debouncedUpdateCalculInformation500 = debounce(updateCalculInformation, 500)
+        const debouncedUpdateCalculInformation1 = debounce(updateCalculInformation, 1)
+        debouncedUpdateCalculInformation1() // Fonction pour lancer une première fois les récupération nécessaire pour les calcules de carousel
+        window.addEventListener("resize", debouncedUpdateCalculInformation500) // Et update ces information au resize de la fenêtre
+        return(() => {window.removeEventListener("resize", debouncedUpdateCalculInformation500)}) // Fonction de nettoyage
     }, [])
 
     // A chaque fois que calculInformation, ou profilPokemon evolue
