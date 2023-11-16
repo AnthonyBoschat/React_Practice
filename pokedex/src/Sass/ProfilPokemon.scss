@@ -82,6 +82,42 @@
 
         #profilPokemonPrecisionBox{
             height: 40%;
+            width: 100%;
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            .statBox{
+                display: grid;
+                grid-template-columns: 1.5fr 2fr 0.5fr;
+
+                .statName{
+                    font-size: 2vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .statProgressBox{
+                    font-size: 2vw;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .progressBar{
+                        border-radius: 50px;
+                        background: rgb(0, 123, 255);
+                        width: 100%;
+                        transition: all 0.5s ease-out;
+                        height: 1.5vw;
+                    }
+                }
+
+                .statValue{
+                    display: flex;
+                    font-size: 2vw;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
         }
     }
 }
