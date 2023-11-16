@@ -30,7 +30,7 @@
                 display: flex;
                 gap: 0.5em;
                 padding-left: 1%;
-                font-size: 1.1em;
+                font-size: 0.8vw;
                 font-weight: 600;
                 font-family: "Noto Sans", sans-serif;
 
@@ -69,12 +69,12 @@
                     }
                 }
                 .focus{
-                    width: 280px;
+                    width: 14vw;
                     opacity: 1;
                 }
     
                 .unfocus{
-                    width: 120px;
+                    width: 7vw;
                     opacity: 0.4;
                 }
             }

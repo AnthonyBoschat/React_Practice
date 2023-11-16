@@ -51,18 +51,29 @@ function ProfilPokemonCarousselle(){
             copyCalculInformation.carouselContainer = carouselContainerRef.current.offsetWidth // Nouvelle valeur de la taille du carousel
             copyCalculInformation.imageFocus = imageFocusRef.current.offsetWidth // Taille de la grande image
             if(imageUnfocusRef.current){copyCalculInformation.imageUnfocus = imageUnfocusRef.current.offsetWidth} // S'il y a un pokemon en Unfocus, taille de la petite image, sinon, prend la taille par défaut initialiser
-            setCalculInformation(copyCalculInformation) // SetState de ces informations 
+            setCalculInformation(copyCalculInformation) // SetState de ces informations
         } 
     }
     
-
+    // Fonction qui sert à retarder l'execution de updateCalculInformation
+    const debounce = (func,wait) => {
+        let timeout // timeout = l'instance en cours de l'appelle futur de la prochaine fonction
+        return function executedFunction(...args){
+            const later = () => {
+                clearTimeout(timeout)
+                func(...args)
+            }
+            timeout = setTimeout(later, wait)
+        }
+    }
 
     //// useEffect
     // Se lance au montage du composant, et à chaque redimensionnement de la page
     useEffect(() => {
+        const debouncedUpdateCalculInformation = debounce(updateCalculInformation, 500)
         updateCalculInformation() // Fonction pour lancer une première fois les récupération nécessaire pour les calcules de carousel
-        window.addEventListener("resize", updateCalculInformation) // Et update ces information au resize de la fenêtre
-        return(() => {window.removeEventListener("resize", updateCalculInformation)}) // Fonction de nettoyage
+        window.addEventListener("resize", debouncedUpdateCalculInformation) // Et update ces information au resize de la fenêtre
+        return(() => {window.removeEventListener("resize", debouncedUpdateCalculInformation)}) // Fonction de nettoyage
     }, [])
 
     // A chaque fois que calculInformation, ou profilPokemon evolue
@@ -88,6 +99,9 @@ function ProfilPokemonCarousselle(){
             return copy
         })
     }, [profilPokemon, calculInformation])
+
+
+    
 
     
 
