@@ -8,15 +8,10 @@ function Main(){
     ////////// STATE ///////////
     const {setPokemonsList} = useContext(StateContext)
 
-
-    
-
-
-    
-
     ////////// METHODE /////////////
     // Fonction qui récupère toute la liste des pokemons au chargement de la page
     useEffect(() => {
+        const localStorageInformation = JSON.parse(localStorage.getItem("pokemons"))
         let controle =  false
         const requestAPI = () => {
             fetch(`https://pokebuildapi.fr/api/v1/pokemon`)
@@ -31,11 +26,15 @@ function Main(){
                     pokemon.typeJoin = type
                 })
                 setPokemonsList(pokemons)
+                // On stock dans localStorage la liste des pokemons
+                localStorage.setItem("pokemons", JSON.stringify(pokemons))
                 }
             })
         }
 
-        requestAPI()
+        if(localStorageInformation){setPokemonsList(localStorageInformation)}
+        else{requestAPI()}
+        
 
         return () => {
             controle = true

@@ -41,7 +41,6 @@ function ProfilPokemonCarousselle(){
         const newPokemonToFocus = pokemonsList.filter(pokemon => pokemon.name === event.currentTarget.alt) // le pokemon cliquer
         newPokemonToFocus[0].tableauOfEvolution = fetchAllEvolutionOfThisPokemon(newPokemonToFocus[0].name) // On récupère sa liste d'évolution
         setProfilPokemon(newPokemonToFocus[0]) // on setState le nouveau profil
-        updateCalculInformation() // On update les calculs
     }
 
 
@@ -76,25 +75,26 @@ function ProfilPokemonCarousselle(){
         const dimensionImageLarge = calculInformation.imageFocus
         const dimensionImageSmall = calculInformation.imageUnfocus
 
-        // On calcul le padding de base, si le pokemon était à l'index 0
+        // On calcul le reste
         const reste = dimensionContainerCarousel - dimensionImageLarge
-        const paddingBasic = reste / 2
-        // On ajuste le padding, en fonction de l'index du pokemon
-        const paddingEnding = paddingBasic - (dimensionImageSmall * index)
+        // On calcul le padding en fonction de l'index du pokemon
+        const padding = reste / 2 - (dimensionImageSmall * index)
 
 
         // On applique le nouveau padding au style du carousel
-        const copyCarouselContainerStyle = {...carouselContainerStyle}
-        copyCarouselContainerStyle.left = paddingEnding
-        setCarouselContainerStyle(copyCarouselContainerStyle)
+        setCarouselContainerStyle(current => {
+            const copy = {...current}
+            copy.left = padding
+            return copy
+        })
     }, [profilPokemon, calculInformation])
 
     
 
     //// REF
-    const carouselContainerRef = useRef(null)
-    const imageFocusRef = useRef(null)
-    const imageUnfocusRef = useRef(null)
+    const carouselContainerRef = useRef()
+    const imageFocusRef = useRef()
+    const imageUnfocusRef = useRef()
 
     /////// RENDER /////////
     return(
