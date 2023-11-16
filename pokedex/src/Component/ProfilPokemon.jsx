@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { StateContext } from "../Context/StateContext";
-import ProfilPokemonImage from "./ProfilPokemonImage";
 import ProfilPokemonHeader from "./ProfilPokemonHeader";
 import ProfilPokemonStat from "./ProfilPokemonStat";
+import ProfilPokemonCarouselle from "./ProfilPokemonCarouselle";
 
 function ProfilPokemon(){
     
@@ -27,7 +27,7 @@ function ProfilPokemon(){
         <div id="profilPokemonOverlay" onClick={closeProfil}>
             <div id="profilPokemonBox">
                 <ProfilPokemonHeader closeProfil={closeProfil} />
-                <ProfilPokemonImage />
+                <ProfilPokemonCarouselle />
                 <ProfilPokemonStat />
             </div>
         </div>
