@@ -6,7 +6,7 @@ function ProfilPokemonStat(){
     /////// STATE /////////
     const {profilPokemon, pokemonsList} = useContext(StateContext)
     const [statsDescription, setStatsDescription] = useState([
-        {value : profilPokemon.stats.HP, name: "HP", apiName: "HP", style:{width:null}},
+        {value : profilPokemon.stats.HP,name: "HP", apiName: "HP", style:{width:null}},
         {value : profilPokemon.stats.attack, name: "Attaque", apiName: "attack", style:{width:null}},
         {value : profilPokemon.stats.defense, name: "Défense", apiName: "defense", style:{width:null}},
         {value : profilPokemon.stats.special_attack, name:"Attaque spécial", apiName: "special_attack", style:{width:null}},
@@ -23,7 +23,7 @@ function ProfilPokemonStat(){
             <div key={`keyStat${stat.name}`} className="statBox">
                 <div className="statName">{stat.name}</div>
                 <div className="statProgressBox">
-                    <div title={stat.value} style={{width:`${taille}%`}} className="progressBar" value={stat.value} max={maxValue}/>
+                    <div title={stat.value} style={{width:`${taille}%`, background:`${stat.color}`}} className="progressBar" value={stat.value} max={maxValue}/>
                 </div>
                 <div className="statValue">
                     {stat.value}
