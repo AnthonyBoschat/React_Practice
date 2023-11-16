@@ -15,15 +15,32 @@ function ProfilPokemonStat(){
     ])
 
     /////// METHODE /////////
+    function calculateColor(stat, maxValue) {
+        // ratio = le pourcentage de la maxValue
+        const ratio = stat.value / maxValue 
+      
+        // On détermine les couleurs du prisme
+        const startColor = { r: 0, g: 110, b: 213 }; // Bleu
+        const endColor = { r: 213, g: 178, b: 0 }; // Rouge
+      
+        // On calcule la nouvelle couleur
+        const r = Math.round(startColor.r + ratio * (endColor.r - startColor.r));
+        const g = Math.round(startColor.g + ratio * (endColor.g - startColor.g));
+        const b = Math.round(startColor.b + ratio * (endColor.b - startColor.b));
+      
+        // on retourn la nouvelle couleur
+        return `rgb(${r},${g},${b})`;
+      }
 
     const generateStats = (stat) => {
         const maxValue = findMaxStat()
         const taille = changeValueOfStyleWidth(stat, maxValue)
+        const color = calculateColor(stat, maxValue)
         return(
             <div key={`keyStat${stat.name}`} className="statBox">
                 <div className="statName">{stat.name}</div>
                 <div className="statProgressBox">
-                    <div title={stat.value} style={{width:`${taille}%`, background:`${stat.color}`}} className="progressBar" value={stat.value} max={maxValue}/>
+                    <div title={stat.value} style={{width:`${taille}%`,background:`${color}`}} className="progressBar" value={stat.value} max={maxValue}/>
                 </div>
                 <div className="statValue">
                     {stat.value}
