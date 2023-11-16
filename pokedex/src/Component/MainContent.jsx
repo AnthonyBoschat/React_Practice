@@ -9,11 +9,6 @@ function MainContent(){
     //////// STATE /////////
     const {fetchAllEvolutionOfThisPokemon, pokemonsList,  logoVisible, setProfilPokemon,  setProfilDisplay} = useContext(StateContext)
 
-
-
-
-
-
     //////// METHODE /////////
     const showProfilOfThisPokemon = (pokemon) => {
         pokemon.tableauOfEvolution = fetchAllEvolutionOfThisPokemon(pokemon.name)
