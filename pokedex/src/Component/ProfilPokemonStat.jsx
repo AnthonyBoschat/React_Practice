@@ -71,7 +71,7 @@ function ProfilPokemonStat(){
             const intervalID = setInterval(() => {
                 currentStep++;
                 const newValue = startValue + valueIncrement * currentStep
-                // Utiliser la version fonctionnelle de setState pour obtenir l'état actuel
+                
                 setStatsDescription(currentStats => currentStats.map(stat => {
                 if(stat.apiName === objet.apiName){
                     const updatedValue = valueIncrement > 0
