@@ -3,7 +3,7 @@ import HeaderLogo from "./HeaderLogo"
 
 function Header(){
     // State
-    //
+    
     // Methode
 
     // Render
