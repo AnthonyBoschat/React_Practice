@@ -8,13 +8,13 @@ function App() {
 
   return (
     <StateProvider>
-    <main>
-      <Counter value={1} />
-      <Counter value={2} />
-      <ColorChange />
-      <SizeChange />
-      <Resultat />
-    </main>
+      <main>
+        <Counter value={1} />
+        <Counter value={2} />
+        <ColorChange />
+        <SizeChange />
+        <Resultat />
+      </main>
     </StateProvider>
   );
 }
